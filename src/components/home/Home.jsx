@@ -3,7 +3,6 @@ import {
   fetchMovies,
   fetchGenre,
   fetchMovieByGenre,
-  fetchPersons,
   fetchTopratedMovie,
 } from "../../service";
 import RBCarousel from "react-bootstrap-carousel";
@@ -12,12 +11,11 @@ import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import NavbarAtas from "../general/NavbarAtas";
 import Footer from "../general/Footer";
-
+import { Accordion ,Card } from "react-bootstrap";
 export function Home() {
   const [nowPlaying, setNowPlaying] = useState([]);
   const [genres, setGenres] = useState([]);
   const [movieByGenre, setMovieByGenre] = useState([]);
-  const [persons, setPersons] = useState([]);
   const [topRated, setTopRated] = useState([]);
 
   useEffect(() => {
@@ -25,7 +23,7 @@ export function Home() {
       setNowPlaying(await fetchMovies());
       setGenres(await fetchGenre());
       setMovieByGenre(await fetchMovieByGenre(28));
-      setPersons(await fetchPersons());
+     
       setTopRated(await fetchTopratedMovie());
     };
 
@@ -37,20 +35,13 @@ export function Home() {
   };
   const movies = nowPlaying.slice(0, 5).map((item, index) => {
     return (
-      
-
-
-
-
+  
       <div style={{ height: 500, width: "100%" }} key={index}>
         <div className="carousel-center">
           <img style={{ height: 600 }} src={item.backPoster} alt={item.title} />
         </div>
         <div className="carousel-center">
-          <i
-            className="far fa-play-circle"
-            style={{ fontSize: 95, color: "#f4c10f" }}
-          ></i>
+          
         </div>
         <div
           className="carousel-caption"
@@ -78,13 +69,27 @@ export function Home() {
     );
   });
 
-  const movieList = movieByGenre.slice(0, 4).map((item, index) => {
+  
+
+  const movieList = movieByGenre.slice(0, 12).map((item, index) => {
     return (
-      <div className="col-md-3 col-sm-6" key={index}>
+      <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6 " key={index}>
         <div className="card">
           <Link to={`/movie/${item.id}`}>
             <img className="img-fluid" src={item.poster} alt={item.title}></img>
           </Link>
+          <Accordion>
+            <Card>
+              <Card.Header>
+                <Accordion.Toggle  variant="link" eventKey="0">
+                  Click me!
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>Hello! I'm the body</Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
         </div>
         <div className="mt-3">
           <p style={{ fontWeight: "bolder" }}>{item.title}</p>
@@ -95,28 +100,13 @@ export function Home() {
             color1={"#f4c10f"}
           ></ReactStars>
         </div>
+        
       </div>
+      
     );
   });
 
-  const trendingPersons = persons.slice(0, 4).map((p, i) => {
-    return (
-      <div className="col-md-3 text-center" key={i}>
-        <img
-          className="img-fluid rounded-circle mx-auto d-block"
-          src={p.profileImg}
-          alt={p.name}
-        ></img>
-        <p className="font-weight-bold text-center">{p.name}</p>
-        <p
-          className="font-weight-light text-center"
-          style={{ color: "#5a606b" }}
-        >
-          Trending for {p.known}
-        </p>
-      </div>
-    );
-  });
+  
 
   const topRatedList = topRated.slice(0, 4).map((item, index) => {
     return (
@@ -170,23 +160,6 @@ export function Home() {
         </div>
       </div>
       <div className="row mt-3">{movieList}</div>
-
-      <div className="row mt-3">
-        <div className="col">
-          <p className="font-weight-bold" style={{ color: "#5a606b" }}>
-            TRENDING PERSONS ON THIS WEEK
-          </p>
-        </div>
-      </div>
-
-      <div className="row mt-3">
-        <div className="col">
-          <div className="float-right">
-            <i className="far fa-arrow-alt-circle-right"></i>
-          </div>
-        </div>
-      </div>
-      <div className="row mt-3">{trendingPersons}</div>
 
       <div className="row mt-3">
         <div className="col">

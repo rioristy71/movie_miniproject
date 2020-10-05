@@ -12,6 +12,7 @@ import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 import Footer from "../general/Footer";
 import NavbarAtas from "../general/NavbarAtas";
+import Rivew from "./Rivew";
 
 
 export function MovieDetail({ match }) {
@@ -82,11 +83,11 @@ export function MovieDetail({ match }) {
     });
   }
 
-  const castList = casts.slice(0, 4).map((c, i) => {
+  const castList = casts.slice(0, 6).map((c, i) => {
     return (
-      <div className="col-md-3 text-center" key={i}>
+      <div className="col-md-2 text-center" key={i}>
         <img
-          className="img-fluid rounded-circle mx-auto d-block"
+          className="img-fluid rounded mx-auto d-block"
           src={c.img}
           alt={c.name}
         ></img>
@@ -123,8 +124,10 @@ export function MovieDetail({ match }) {
   });
 
   return (
+    <>
+    <NavbarAtas/>
     <div className="container">
-       <NavbarAtas/>
+    
       <div className="row mt-2">
         
         <MoviePalyerModal
@@ -183,6 +186,11 @@ export function MovieDetail({ match }) {
         </div>
       </div>
 
+      <div> 
+        <Rivew/>
+      </div>
+      
+
       <div className="row mt-3">
         <div className="col-md-3">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>RELEASE DATE</p>
@@ -223,5 +231,6 @@ export function MovieDetail({ match }) {
 
             <Footer/>
     </div>
+    </>
   );
 }
