@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navbar ,Nav ,Form ,FormControl} from "react-bootstrap";
+import LoginBtn from './small-component/LoginBtn';
 export default function NavbarAtas() {
     return (
         <div>
@@ -7,12 +8,12 @@ export default function NavbarAtas() {
                 <Navbar.Brand href="#home">Icon</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
+                    <Nav className=" mr-auto ">
                     </Nav>
                     <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2 text-center" />
+                    <FormControl type="text" placeholder="Search" className=" mr-sm-2   text-center" />
                     <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#link">Link</Nav.Link>
+                    <Nav.Link href="#link"><LoginBtn/></Nav.Link>
                     </Form>
                 </Navbar.Collapse>
                 </Navbar> 
