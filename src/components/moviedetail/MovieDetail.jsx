@@ -11,6 +11,7 @@ import ReactPlayer from "react-player";
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 
+
 export function MovieDetail({ match }) {
   let params = match.params;
   let genres = [];
@@ -36,6 +37,9 @@ export function MovieDetail({ match }) {
   const MoviePalyerModal = (props) => {
     const youtubeUrl = "https://www.youtube.com/watch?v=";
     return (
+
+      
+
       <Modal
         {...props}
         size="lg"
