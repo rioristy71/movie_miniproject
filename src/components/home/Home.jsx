@@ -17,12 +17,19 @@ export function Home() {
   const [genres, setGenres] = useState([]);
   const [movieByGenre, setMovieByGenre] = useState([]);
   const [topRated, setTopRated] = useState([]);
+  const [page, setPage] = useState(1); //page berapa
+  const [totalPages, setTotalPages] = useState(1); //total pages keganti pas ambil pertama kali
 
   useEffect(() => {
     const fetchAPI = async () => {
+      const getMovie = fetchMovieByGenre(28) //ganti untuk dapet totalpages
+      getMovie.then((data) => {
+        setMovieByGenre(data.result)
+        setTotalPages(data.totalPages)
+      })
+
       setNowPlaying(await fetchMovies());
       setGenres(await fetchGenre());
-      setMovieByGenre(await fetchMovieByGenre(28));
 
       setTopRated(await fetchTopratedMovie());
     };
@@ -30,9 +37,28 @@ export function Home() {
     fetchAPI();
   }, []);
 
+  useEffect(() => { // ngecheck state page keganti atau tidak kalo ganti ambil data berdasarkan page
+    const getMovie = fetchMovieByGenre(28, page)
+    getMovie.then((data) =>{ 
+      setMovieByGenre(data.result)
+      setTotalPages(data.totalPages)
+    })
+  }, [page]); 
+
   const handleGenreClick = async (genre_id) => {
-    setMovieByGenre(await fetchMovieByGenre(genre_id));
+    setPage(1)
+    const getMovie = fetchMovieByGenre(28)
+    getMovie.then((data) =>{ 
+      setMovieByGenre(data.result)
+      setTotalPages(data.totalPages)
+    })
   };
+
+  const handleNextPage = () => { // ganti ke dinamic masih static
+    console.log('test')
+    setPage(2);
+  }
+
   const movies = nowPlaying.slice(0, 5).map((item, index) => {
     return (
       <div style={{ height: 500, width: "100%" }} key={index}>
@@ -66,7 +92,7 @@ export function Home() {
     );
   });
 
-  const movieList = movieByGenre.slice(0, 12).map((item, index) => {
+  const movieList = movieByGenre.length ? movieByGenre.map((item, index) => {
     return (
       // pertama
       <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6 " key={index}>
@@ -125,7 +151,7 @@ export function Home() {
       </div>
       // kedua
     );
-  });
+  }) : 'Kosong';
 
   const topRatedList = topRated.slice(0, 4).map((item, index) => {
     return (
@@ -175,7 +201,7 @@ export function Home() {
         <div className="row mt-3">
           <div className="col">
             <div className="float-right">
-              <i className="far fa-arrow-alt-circle-right"></i>
+              <i className="far fa-arrow-alt-circle-right" onClick={handleNextPage}></i>
             </div>
           </div>
         </div>

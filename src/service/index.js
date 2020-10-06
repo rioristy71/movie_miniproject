@@ -51,13 +51,13 @@ export const fetchGenre = async () => {
     } catch (error) { }
 }
 
-export const fetchMovieByGenre = async (genre_id) => {
+export const fetchMovieByGenre = async (genre_id, page = 1) => {
     try {
         const { data } = await axios.get(moviesUrl, {
             params: {
                 api_key: apiKey,
                 language: 'en_US',
-                page: 1,
+                page: page,
                 with_genres: genre_id
             }
         })
@@ -72,7 +72,12 @@ export const fetchMovieByGenre = async (genre_id) => {
             rating: m['vote_average'],
         }))
 
-        return modifiedData;
+        const result = {
+            totalPages:data.total_pages,
+            result:modifiedData
+        }
+
+        return result;
     } catch (error) { }
 }
 
