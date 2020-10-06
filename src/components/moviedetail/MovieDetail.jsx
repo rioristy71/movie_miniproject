@@ -186,9 +186,7 @@ export function MovieDetail({ match }) {
         </div>
       </div>
 
-      <div> 
-        <Rivew/>
-      </div>
+     
       
 
       <div className="row mt-3">
@@ -209,7 +207,9 @@ export function MovieDetail({ match }) {
           <p style={{ color: "#f4c10f" }}>{detail.homepage}</p>
         </div>
       </div>
-
+      <div> 
+        <Rivew/>
+      </div>
       <div className="row mt-3">
         <div className="col">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>CASTS</p>

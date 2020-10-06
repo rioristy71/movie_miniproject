@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button ,Modal ,Form ,Dropdown ,DropdownButton ,ButtonGroup} from "react-bootstrap";
-
+import "./Small-Css/login.css";
 
 
 
@@ -16,13 +16,13 @@ export default function LoginBtn() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-    if (setLogin) {
+    if (!setLogin) {
        
       return (
         <div>
        
         <>
-          <Button variant="primary" onClick={handleShow}>
+          <Button variant="outline-light" onClick={handleShow}>
             Login
           </Button>
     
@@ -45,9 +45,6 @@ export default function LoginBtn() {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" />
                     </Form.Group>
-                    <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
                  </Form>
     
     
@@ -55,7 +52,7 @@ export default function LoginBtn() {
             </Modal.Body>
             <Modal.Footer>
             
-              <Button variant="primary" onClick={handleClose}>
+              <Button variant="outline-light" onClick={handleClose}>
                 Login
               </Button>
             </Modal.Footer>
@@ -74,13 +71,13 @@ export default function LoginBtn() {
       <div>
               <div className="mb-2">
           {['left'].map((direction) => (
-          <DropdownButton
+          <DropdownButton className="btn-kebawah"
             as={ButtonGroup}
             key={direction}
             id={`dropdown-button-drop-${direction}`}
             drop={direction}
-            variant="secondary"
-            title={` Drop ${direction} `}
+            variant="outline-light"
+            title={` icon  `}
           >
             <Dropdown.Item eventKey="1">Action</Dropdown.Item>
             <Dropdown.Item eventKey="2">Another action</Dropdown.Item>

@@ -53,10 +53,12 @@ export function Home() {
       setTotalPages(data.totalPages)
     })
   };
-
+ 
   const handleNextPage = () => { // ganti ke dinamic masih static
+  
     console.log('test')
     setPage(2);
+    
   }
 
   const movies = nowPlaying.slice(0, 5).map((item, index) => {
@@ -96,7 +98,7 @@ export function Home() {
     return (
       // pertama
       <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6 " key={index}>
-        <Carousel interval={100000}>
+        <Carousel interval={100000*1000}>
           <Carousel.Item>
             <Link to={`/movie/${item.id}`}>
           
