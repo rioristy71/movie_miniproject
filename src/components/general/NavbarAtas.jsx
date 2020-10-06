@@ -18,7 +18,6 @@ export default function NavbarAtas() {
                     </Form>
                     <Form inline>
                     
-                    <Nav.Link  href="#home">Home</Nav.Link>
                     <Nav.Link href="#link"><LoginBtn/></Nav.Link>
                     </Form>
                 </Navbar.Collapse>
