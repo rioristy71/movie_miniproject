@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Tabs ,Tab ,Form  ,Button ,FormControl} from "react-bootstrap";
+import { Tabs ,Tab ,Form  ,Button ,FormControl , Card} from "react-bootstrap";
 export default class Rivew extends Component {
     render() {
         return (
@@ -7,10 +7,14 @@ export default class Rivew extends Component {
 
         <div>
             <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+           
             <Tab eventKey="home" title="Comente">
+            <Card.Body>
                 <h1>Di isi rivew </h1>
+            </Card.Body>
             </Tab>
             <Tab eventKey="profile" title="Riview">
+            <Card.Body>
             <Form>
             <Form.Group controlId="formBasicRange">
                         <Form.Label>Suka</Form.Label>
@@ -28,8 +32,11 @@ export default class Rivew extends Component {
                     Submit
                 </Button>
                 </Form>
+                </Card.Body>
             </Tab>
+           
             </Tabs>
+          
         </div>
             </div>
         )
