@@ -27,7 +27,7 @@ export default function LoginBtn() {
 
   const handleClose4 = () => setShow4(false);
   const handleShow4 = () => setShow4(true);
-    if (!setLogin) {
+    if (setLogin) {
        
       return (
         <div>
@@ -66,13 +66,12 @@ export default function LoginBtn() {
                  </Form>
     
     
-                {/*isi Forom end  */}
             </Modal.Body>
             <Modal.Footer>
-            
               <Button variant="outline-light" onClick={handleClose}>
                 Login
               </Button>
+
             </Modal.Footer>
           </Modal>
           {/* login modal end */}

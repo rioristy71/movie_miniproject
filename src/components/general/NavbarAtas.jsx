@@ -5,12 +5,7 @@ import "../Css/Navbar.css";
 export default function NavbarAtas() {
     return (
         <div>
-           <Navbar bg="transparant" variant="dark" expand="lg">
-<<<<<<< HEAD
-                
-=======
-                <Navbar.Brand href="#home">M 0 V ! E</Navbar.Brand>
->>>>>>> c0b1021d47a3774458829b6d1cdf1a5070ef6986
+           <Navbar bg="transparant" variant="dark" expand="md">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Navbar.Brand className="" href="#home">Icon</Navbar.Brand>
