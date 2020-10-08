@@ -55,10 +55,14 @@ export function Home() {
   };
  
   const handleNextPage = () => { // ganti ke dinamic masih static
+<<<<<<< HEAD
   
     console.log('test')
     setPage(2);
     
+=======
+    setPage(page+1);
+>>>>>>> c0b1021d47a3774458829b6d1cdf1a5070ef6986
   }
 
   const movies = nowPlaying.slice(0, 5).map((item, index) => {
@@ -94,8 +98,9 @@ export function Home() {
     );
   });
 
-  const movieList = movieByGenre.length ? movieByGenre.map((item, index) => {
+  const movieList = movieByGenre.slice(0, 4).map((item, index) => {
     return (
+<<<<<<< HEAD
       // pertama
       <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6 " key={index}>
         <Carousel interval={100000*1000}>
@@ -147,14 +152,26 @@ export function Home() {
 
         {/* end div */}
 
+=======
+      <div className="col-md-3 col-sm-6" key={index}>
+        <div className="card">
+          <Link to={`/movie/${item.id}`}>
+            <img className="img-fluid" src={item.poster} alt={item.title}></img>
+          </Link>
+        </div>
+>>>>>>> c0b1021d47a3774458829b6d1cdf1a5070ef6986
         <div className="mt-3">
-         
+          <p style={{ fontWeight: "bolder" }}>{item.title}</p>
+          <p>Rated: {item.rating}</p>
+          <ReactStars
+            count={item.rating}
+            size={20}
+            color1={"#f4c10f"}
+          ></ReactStars>
         </div>
       </div>
-      // kedua
     );
-  }) : 'Kosong';
-
+  });
   const topRatedList = topRated.slice(0, 4).map((item, index) => {
     return (
       <div className="col-md-3" key={index}>
