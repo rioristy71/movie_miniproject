@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useParams} from "react";
+import axios from 'axios';
 import {
+  fetchMovies2,
   fetchMovies,
   fetchGenre,
   fetchMovieByGenre,
-  fetchPersons,
   fetchTopratedMovie,
 } from "../../service";
 import RBCarousel from "react-bootstrap-carousel";
@@ -17,41 +18,63 @@ export function Home() {
   const [nowPlaying, setNowPlaying] = useState([]);
   const [genres, setGenres] = useState([]);
   const [movieByGenre, setMovieByGenre] = useState([]);
-  const [persons, setPersons] = useState([]);
   const [topRated, setTopRated] = useState([]);
+  const [page, setPage] = useState(1); //page berapa
+  const [totalPages, setTotalPages] = useState(1); //total pages keganti pas ambil pertama kali
+  const [halamanBaru , Sethalamanbaru] =useState([])
 
   useEffect(() => {
     const fetchAPI = async () => {
+      const getMovie = fetchMovieByGenre(28) //ganti untuk dapet totalpages
+      getMovie.then((data) => {
+        setMovieByGenre(data.result)
+        setTotalPages(data.totalPages)
+      })
+
       setNowPlaying(await fetchMovies());
       setGenres(await fetchGenre());
-      setMovieByGenre(await fetchMovieByGenre(28));
-      setPersons(await fetchPersons());
       setTopRated(await fetchTopratedMovie());
+
+     
     };
 
     fetchAPI();
   }, []);
 
+  useEffect(() => { // ngecheck state page keganti atau tidak kalo ganti ambil data berdasarkan page
+    const getMovie = fetchMovieByGenre(28, page)
+    getMovie.then((data) =>{ 
+      setMovieByGenre(data.result)
+      setTotalPages(data.totalPages)
+    })
+  }, [page]); 
+
+
+
   const handleGenreClick = async (genre_id) => {
-    setMovieByGenre(await fetchMovieByGenre(genre_id));
+    setPage(1)
+    const getMovie = fetchMovieByGenre(28)
+    getMovie.then((data) =>{ 
+      setMovieByGenre(data.result)
+      setTotalPages(data.totalPages)
+    })
   };
-  const movies = nowPlaying.slice(0, 5).map((item, index) => {
+ 
+  const handleNextPage = () => { // ganti ke dinamic masih static
+
+    setPage(page+1);
+  }
+
+ 
+
+  
+  const movies = nowPlaying.slice(0, 4).map((item, index) => {
     return (
-      
-
-
-
-
       <div style={{ height: 500, width: "100%" }} key={index}>
         <div className="carousel-center">
           <img style={{ height: 600 }} src={item.backPoster} alt={item.title} />
         </div>
-        <div className="carousel-center">
-          <i
-            className="far fa-play-circle"
-            style={{ fontSize: 95, color: "#f4c10f" }}
-          ></i>
-        </div>
+        <div className="carousel-center"></div>
         <div
           className="carousel-caption"
           style={{ textAlign: "center", fontSize: 35 }}
@@ -78,7 +101,7 @@ export function Home() {
     );
   });
 
-  const movieList = movieByGenre.slice(0, 4).map((item, index) => {
+  const movieList = movieByGenre.map((item, index) => {
     return (
       <div className="col-md-3 col-sm-6" key={index}>
         <div className="card">
@@ -98,26 +121,6 @@ export function Home() {
       </div>
     );
   });
-
-  const trendingPersons = persons.slice(0, 4).map((p, i) => {
-    return (
-      <div className="col-md-3 text-center" key={i}>
-        <img
-          className="img-fluid rounded-circle mx-auto d-block"
-          src={p.profileImg}
-          alt={p.name}
-        ></img>
-        <p className="font-weight-bold text-center">{p.name}</p>
-        <p
-          className="font-weight-light text-center"
-          style={{ color: "#5a606b" }}
-        >
-          Trending for {p.known}
-        </p>
-      </div>
-    );
-  });
-
   const topRatedList = topRated.slice(0, 4).map((item, index) => {
     return (
       <div className="col-md-3" key={index}>
@@ -140,75 +143,59 @@ export function Home() {
   });
 
   return (
-    <div><NavbarAtas/>
-    <div className="container">
-      <div className="row mt-2">
-        <div className="col">
-          <RBCarousel
-            autoplay={true}
-            pauseOnVisibility={true}
-            slidesshowSpeed={5000}
-            version={4}
-            indicators={false}
-          >
-            {movies}
-          </RBCarousel>
-        </div>
-      </div>
-
-      <div className="row mt-3">
-        <div className="col">
-          <ul className="list-inline">{genreList}</ul>
-        </div>
-      </div>
-
-      <div className="row mt-3">
-        <div className="col">
-          <div className="float-right">
-            <i className="far fa-arrow-alt-circle-right"></i>
+    <div>
+      <NavbarAtas />
+      <div className="container">
+        <div className="row mt-2">
+          <div className="col">
+            <RBCarousel
+              autoplay={true}
+              pauseOnVisibility={true}
+              slidesshowSpeed={5000}
+              version={4}
+              indicators={false}
+            >
+              {movies}
+            </RBCarousel>
           </div>
         </div>
-      </div>
-      <div className="row mt-3">{movieList}</div>
 
-      <div className="row mt-3">
-        <div className="col">
-          <p className="font-weight-bold" style={{ color: "#5a606b" }}>
-            TRENDING PERSONS ON THIS WEEK
-          </p>
-        </div>
-      </div>
-
-      <div className="row mt-3">
-        <div className="col">
-          <div className="float-right">
-            <i className="far fa-arrow-alt-circle-right"></i>
+        <div className="row mt-3">
+          <div className="col">
+            <ul className="list-inline">{genreList}</ul>
           </div>
         </div>
-      </div>
-      <div className="row mt-3">{trendingPersons}</div>
 
-      <div className="row mt-3">
-        <div className="col">
-          <p className="font-weight-bold" style={{ color: "#5a606b" }}>
-            TOP RATED MOVIES
-          </p>
-        </div>
-      </div>
-
-      <div className="row mt-3">
-        <div className="col">
-          <div className="float-right">
-            <i className="far fa-arrow-alt-circle-right"></i>
+        <div className="row mt-3">
+          <div className="col">
+            <div className="float-right">
+              <i className="far fa-arrow-alt-circle-right" onClick={handleNextPage}></i>
+            </div>
           </div>
         </div>
+        <div className="row mt-3">{movieList}</div>
+
+        <div className="row mt-3">
+          <div className="col">
+            <p className="font-weight-bold" style={{ color: "#5a606b" }}>
+              TOP RATED MOVIES
+            </p>
+          </div>
+        </div>
+
+        <div className="row mt-3">
+          <div className="col">
+            <div className="float-right">
+              <i className="far fa-arrow-alt-circle-right"></i>
+            </div>
+          </div>
+        </div>
+        <div className="row mt-3">{topRatedList}</div>
+
+        <hr className="mt-5" style={{ borderTop: "1px solid #5a606b" }}></hr>
+
+        <Footer />
       </div>
-      <div className="row mt-3">{topRatedList}</div>
-
-      <hr className="mt-5" style={{ borderTop: "1px solid #5a606b" }}></hr>
-
-          <Footer/>
-    </div>
     </div>
   );
 }

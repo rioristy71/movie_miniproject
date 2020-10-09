@@ -10,6 +10,9 @@ import { Modal } from "react-bootstrap";
 import ReactPlayer from "react-player";
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
+import Footer from "../general/Footer";
+import NavbarAtas from "../general/NavbarAtas";
+import Rivew from "./Rivew";
 
 
 export function MovieDetail({ match }) {
@@ -37,8 +40,8 @@ export function MovieDetail({ match }) {
   const MoviePalyerModal = (props) => {
     const youtubeUrl = "https://www.youtube.com/watch?v=";
     return (
-
-      
+    
+     
 
       <Modal
         {...props}
@@ -63,6 +66,7 @@ export function MovieDetail({ match }) {
           ></ReactPlayer>
         </Modal.Body>
       </Modal>
+     
     );
   };
 
@@ -79,11 +83,11 @@ export function MovieDetail({ match }) {
     });
   }
 
-  const castList = casts.slice(0, 4).map((c, i) => {
+  const castList = casts.slice(0, 6).map((c, i) => {
     return (
-      <div className="col-md-3 text-center" key={i}>
+      <div className="col-md-2 text-center" key={i}>
         <img
-          className="img-fluid rounded-circle mx-auto d-block"
+          className="img-fluid rounded mx-auto d-block"
           src={c.img}
           alt={c.name}
         ></img>
@@ -120,8 +124,12 @@ export function MovieDetail({ match }) {
   });
 
   return (
+    <>
+    <NavbarAtas/>
     <div className="container">
+    
       <div className="row mt-2">
+        
         <MoviePalyerModal
           show={isOpen}
           onHide={() => {
@@ -178,6 +186,9 @@ export function MovieDetail({ match }) {
         </div>
       </div>
 
+     
+      
+
       <div className="row mt-3">
         <div className="col-md-3">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>RELEASE DATE</p>
@@ -196,7 +207,9 @@ export function MovieDetail({ match }) {
           <p style={{ color: "#f4c10f" }}>{detail.homepage}</p>
         </div>
       </div>
-
+      <div> 
+        <Rivew/>
+      </div>
       <div className="row mt-3">
         <div className="col">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>CASTS</p>
@@ -216,74 +229,8 @@ export function MovieDetail({ match }) {
 
       <hr className="mt-5" style={{ borderTop: "1px solid #5a606b" }}></hr>
 
-      <div className="row mt-3 mb-5">
-        <div className="col-md-8 col-sm-6" style={{ color: "#5a606b" }}>
-          <h3>ABOUT ME</h3>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi
-            error earum perspiciatis praesentium sint ipsum provident blanditiis
-            pariatur necessitatibus voluptas, cum, atque iste eligendi autem,
-            culpa cupiditate placeat facilis repellat.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-            perspiciatis? Numquam, enim illo voluptatum neque facere aut sed ut
-            dolore nihil? Nulla sit, recusandae ea tenetur rerum deserunt sequi
-            earum?
-          </p>
-          <ul className="list-inline">
-            <li className="list-inline-item">
-              <a href="/" style={{ color: "#f4c10f" }}>
-                <i className="fab fa-facebook"></i>
-              </a>
-            </li>
-            <li className="list-inline-item">
-              <a href="/" style={{ color: "#f4c10f" }}>
-                <i className="fab fa-youtube"></i>
-              </a>
-            </li>
-            <li className="list-inline-item">
-              <a href="/" style={{ color: "#f4c10f" }}>
-                <i className="fab fa-twitter"></i>
-              </a>
-            </li>
-            <li className="list-inline-item">
-              <a href="/" style={{ color: "#f4c10f" }}>
-                <i className="fab fa-instagram"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="col-md-4 col-sm-6" style={{ color: "#5a606b" }}>
-          <h3>KEEP IN TOUCH</h3>
-          <ul className="list-unstyled">
-            <li>
-              <p>
-                <strong>
-                  <i className="fas fa-map-marker-alt"></i> Address:
-                </strong>{" "}
-                city, state, country
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>
-                  <i className="fas fa-map-marker-alt"></i> Phone:
-                </strong>{" "}
-                +01 00 00 00
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>
-                  <i className="fas fa-envelope"></i> Email:
-                </strong>{" "}
-                info@infomail.com
-              </p>
-            </li>
-          </ul>
-        </div>
-      </div>
+            <Footer/>
     </div>
+    </>
   );
 }
