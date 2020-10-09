@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useParams} from "react";
+import axios from 'axios';
 import {
+  fetchMovies2,
   fetchMovies,
   fetchGenre,
   fetchMovieByGenre,
@@ -19,6 +21,7 @@ export function Home() {
   const [topRated, setTopRated] = useState([]);
   const [page, setPage] = useState(1); //page berapa
   const [totalPages, setTotalPages] = useState(1); //total pages keganti pas ambil pertama kali
+  const [halamanBaru , Sethalamanbaru] =useState([])
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -30,8 +33,9 @@ export function Home() {
 
       setNowPlaying(await fetchMovies());
       setGenres(await fetchGenre());
-
       setTopRated(await fetchTopratedMovie());
+
+     
     };
 
     fetchAPI();
@@ -45,6 +49,8 @@ export function Home() {
     })
   }, [page]); 
 
+
+
   const handleGenreClick = async (genre_id) => {
     setPage(1)
     const getMovie = fetchMovieByGenre(28)
@@ -57,9 +63,11 @@ export function Home() {
   const handleNextPage = () => { // ganti ke dinamic masih static
 
     setPage(page+1);
-
   }
 
+ 
+
+  
   const movies = nowPlaying.slice(0, 4).map((item, index) => {
     return (
       <div style={{ height: 500, width: "100%" }} key={index}>
@@ -93,7 +101,7 @@ export function Home() {
     );
   });
 
-  const movieList = movieByGenre.slice(0, 8).map((item, index) => {
+  const movieList = movieByGenre.map((item, index) => {
     return (
       <div className="col-md-3 col-sm-6" key={index}>
         <div className="card">

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button ,Modal ,Form ,Dropdown ,DropdownButton ,ButtonGroup} from "react-bootstrap";
 import "./Small-Css/login.css";
-
+import {Link} from "react-router-dom";
 
 
 export default function LoginBtn() {
@@ -10,10 +10,24 @@ export default function LoginBtn() {
     const [show2, setShow2] = useState(false);
     const [show3, setShow3] = useState(false);
     const [show4, setShow4] = useState(false);
-    const [login, setLogin] = useState(false);
+    const [isLogin, isLoginini] = useState(localStorage.getItem('isLogin'))   
+// untuk perubahan 
+const [inputanAll, setInputAll ] = useState({
 
-  const LoginIN = () => setLogin(true);
-  const LoginOut = () => setLogin(false);
+  username :'',
+  password :'',
+});
+
+const [RegisterState , SetRegisterState] = useState({
+   username : "",
+   password : "",
+   name : "",
+   image : "",
+});
+
+  
+  // const LoginIN = () => setLogin(true);
+  // const LoginOut = () => setLogin(false);
     
 
   const handleClose = () => setShow(false);
@@ -27,14 +41,83 @@ export default function LoginBtn() {
 
   const handleClose4 = () => setShow4(false);
   const handleShow4 = () => setShow4(true);
-    if (setLogin) {
-       
+
+
+  const perubahan =(e) => {
+    const namasaya = e.target.getAttribute("nama");
+    setInputAll({...inputanAll, [namasaya]:e.target.value})
+  } 
+
+
+  const perubahan2 =(e) => {
+    const namasaya = e.target.getAttribute("nama");
+    SetRegisterState({...RegisterState, [namasaya]:e.target.value})
+  } 
+
+  const OnKliklogin = e =>{
+    // on clik login    
+   console.log({inputanAll});
+   fetch('https://gentle-garden-05760.herokuapp.com/users/login', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(inputanAll)
+      })
+      .then(res => res.json())
+      .then(result => {
+          console.log('Success:', result);
+          localStorage.setItem('token', result.access_token);
+          localStorage.setItem('isLogin', true);   
+           console.log(localStorage);
+           console.log(isLogin);
+           window.location.reload(false);
+      }).catch((err)=>(console.log("error")))
+
+    
+  }
+
+  const daftarbaru2 = e =>{
+    // on clik daftar    
+    e.preventDefault();
+    console.log({RegisterState});
+    fetch('https://gentle-garden-05760.herokuapp.com/users/register', {
+     method: 'POST',
+     headers: {
+         'Content-Type': 'application/json',
+     },
+     body: JSON.stringify(RegisterState)
+       })
+       .then(res => res.json())
+       .then(result => {
+           console.log('Success:', result);
+           localStorage.setItem('token', result.access_token);
+           localStorage.setItem('isLogin', true);   
+            console.log(localStorage);
+            console.log(isLogin);
+            window.location.reload(false);
+       }).catch((err)=>(console.log("error")))
+ 
+
+
+   console.log({RegisterState});
+  }
+
+
+  const Logout = e =>{
+    localStorage.setItem('isLogin', false); 
+    localStorage.setItem('token', '');
+    window.location.reload(false);
+  }
+
+    if (isLogin==="false") {
+   
       return (
         <div>
        
         <><ButtonGroup aria-label="Basic example">
          <Button variant="outline-light">
-            Home
+           <Link  to={'/'} >Home</Link>
           </Button>
           <Button variant="outline-light" onClick={handleShow}>
             Login
@@ -53,22 +136,23 @@ export default function LoginBtn() {
                 <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
-                        <Form.Text className="text-muted">
+                        <Form.Control nama="username" onChange={perubahan} type="email" placeholder="Enter email" />
+                        <Form.Text  className="text-muted">
                         We'll never share your email with anyone else.
                         </Form.Text>
                     </Form.Group>
     
                     <Form.Group controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control nama="password" onChange={perubahan}  type="password" placeholder="Password" />
                     </Form.Group>
                  </Form>
     
     
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="outline-light" onClick={handleClose}>
+          
+              <Button variant="outline-light" onClick={OnKliklogin}>
                 Login
               </Button>
 
@@ -82,23 +166,32 @@ export default function LoginBtn() {
             </Modal.Header>
             <Modal.Body>
                 {/* isi from */}
-                <Form>
+                <Form onSubmit={OnKliklogin}>
                 <Form.Group controlId="formBasicInput">
                         <Form.Label>Fullname</Form.Label>
-                        <Form.Control type="text" placeholder="username" />
+                        <Form.Control  nama ="name" onChange={perubahan2} type="text" placeholder="username" />
                     </Form.Group>
 
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control  nama ="username" onChange={perubahan2}  type="email" placeholder="Enter email" />
                         <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                         </Form.Text>
                     </Form.Group>
-    
+                    <Form.Group>
+                    <Form.File 
+                          onChange={perubahan2}
+                          nama="image"
+                          id="custom-file-translate-scss"
+                          label="Custom file input"
+                          lang="en"
+                          custom
+                        />
+                    </Form.Group>
                     <Form.Group controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control  nama ="password"  onChange={perubahan2} type="password" placeholder="Password" />
                     </Form.Group>
                  </Form>
     
@@ -106,17 +199,48 @@ export default function LoginBtn() {
                 {/*isi Forom end  */}
             </Modal.Body>
             <Modal.Footer>
-            
-              <Button variant="outline-light" onClick={handleClose2}>
-                Login
+             
+              <Button variant="outline-light" onClick={daftarbaru2} >
+                Sign Up
               </Button>
             </Modal.Footer>
           </Modal>
 
           {/* sgin in end */}
         </>
-      
+       {/* login */}
+       <Modal  style={{color:"black"}} show={show} onHide={handleClose} animation={false}>
+            <Modal.Header closeButton>
+              <Modal.Title>Login</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {/* isi from */}
+                <Form>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control nama="username" onChange={perubahan} type="email" placeholder="Enter email" />
+                        <Form.Text className="text-muted">
+                        We'll never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
     
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control nama="password" onChange={perubahan} type="password" placeholder="Password" />
+                    </Form.Group>
+                 </Form>
+    
+    
+            </Modal.Body>
+            <Modal.Footer>
+            <Link onClick={handleShow2}>Sign Up </Link>
+              <Button variant="outline-light" onClick={OnKliklogin}>
+                Login
+              </Button>
+
+            </Modal.Footer>
+          </Modal>
+          {/* login modal end */}
     
     
             </div>
@@ -144,7 +268,7 @@ export default function LoginBtn() {
             <Button variant="" onClick={handleShow4}>
             Edit Image
             </Button>
-            <Dropdown.Item eventKey="4">Log Out</Dropdown.Item>
+            <Dropdown.Item onClick={Logout } eventKey="4">Log Out</Dropdown.Item>
             </DropdownButton>
           ))}
           </div>
@@ -177,20 +301,17 @@ export default function LoginBtn() {
     
     
                 {/*isi Forom end  */}
-            </Modal.Body>
+          </Modal.Body>
             <Modal.Footer>
-            
               <Button variant="outline-light" onClick={handleClose3}>
                 Save Info
               </Button>
             </Modal.Footer>
           </Modal>
-
             {/* edit profil form end */}
 
 
             {/* form edit image */}
-
             <Modal  style={{color:"black"}} show={show4} onHide={handleClose4} animation={false}>
             <Modal.Header closeButton>
               <Modal.Title>Edit Info</Modal.Title>
@@ -212,7 +333,6 @@ export default function LoginBtn() {
               </Button>
             </Modal.Footer>
           </Modal>
-
             {/* edit image */}
 
       </div>

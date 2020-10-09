@@ -8,7 +8,7 @@ export default function NavbarAtas() {
            <Navbar bg="transparant" variant="dark" expand="md">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                <Navbar.Brand className="" href="#home">Icon</Navbar.Brand>
+                <Navbar.Brand className="" to={'/'}>Icon</Navbar.Brand>
                     <Nav className=" mr-auto ">
                     </Nav>
                    

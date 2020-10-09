@@ -3,11 +3,51 @@ import axios from 'axios';
 const apiKey = 'b06acbfc13f5d2a71bfbbdea12dd0de3';
 const url = 'https://api.themoviedb.org/3';
 const nowPlayingUrl = `${url}/movie/now_playing`;
+const halamanhomeplay = `https://gentle-garden-05760.herokuapp.com/movies/1`;
 const topratedUrl = `${url}/movie/top_rated`;
 const movieUrl = `${url}/movie`;
 const genreUrl = `${url}/genre/movie/list`;
 const moviesUrl = `${url}/discover/movie`;
 const personUrl = `${url}/trending/person/week`;
+
+
+// fatch movie by db sendiri 
+export const fetchMovies2 = async () => {
+    try {
+        const { data } = await axios.get(halamanhomeplay, {
+          
+
+            
+        })
+
+       
+        const modifiedData = data['results'].map((m) => ({
+            id: m['id'],
+            backPoster:  m['trailer'],
+            popularity: m['genre'],
+            title: m['title'],
+            poster:  m['poster'],
+            overview: m['synopsis'],
+            rating: m['rated'],
+            lang:m['language'],
+            Rdate:m['releaseDate']
+        }))
+
+        return modifiedData;
+    } catch (error) { }
+}
+
+
+
+
+
+
+// end fatch movie from back end
+
+
+
+
+
 
 export const fetchMovies = async () => {
     try {
