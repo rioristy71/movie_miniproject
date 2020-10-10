@@ -38,7 +38,7 @@ export function MovieDetail({ match }) {
   genres = detail.genres;
 
   const MoviePalyerModal = (props) => {
-    const youtubeUrl = "https://www.youtube.com/watch?v=";
+ 
     return (
     
      
@@ -60,7 +60,7 @@ export function MovieDetail({ match }) {
         <Modal.Body style={{ backgroundColor: "#000000" }}>
           <ReactPlayer
             className="container-fluid"
-            url={youtubeUrl + video.key}
+            url={detail.trailer }
             playing
             width="100%"
           ></ReactPlayer>
@@ -83,24 +83,24 @@ export function MovieDetail({ match }) {
     });
   }
 
-  const castList = casts.slice(0, 6).map((c, i) => {
-    return (
-      <div className="col-md-2 text-center" key={i}>
-        <img
-          className="img-fluid rounded mx-auto d-block"
-          src={c.img}
-          alt={c.name}
-        ></img>
-        <p className="font-weight-bold text-center">{c.name}</p>
-        <p
-          className="font-weight-light text-center"
-          style={{ color: "#5a606b" }}
-        >
-          {c.character}
-        </p>
-      </div>
-    );
-  });
+  // const castList = casts.slice(0, 6).map((c, i) => {
+  //   return (
+  //     <div className="col-md-2 text-center" key={i}>
+  //       <img
+  //         className="img-fluid rounded mx-auto d-block"
+  //         src={c.img}
+  //         alt={c.name}
+  //       ></img>
+  //       <p className="font-weight-bold text-center">{c.name}</p>
+  //       <p
+  //         className="font-weight-light text-center"
+  //         style={{ color: "#5a606b" }}
+  //       >
+  //         {c.character}
+  //       </p>
+  //     </div>
+  //   );
+  // });
 
   const similarMovieList = similarMovie.slice(0, 4).map((item, index) => {
     return (
@@ -123,6 +123,36 @@ export function MovieDetail({ match }) {
     );
   });
 
+  const project = () => {
+    console.log(similarMovie);
+    switch(detail.genre) {
+
+      case 1:   return <li className="btn btn-danger">Action</li>;
+      case 2:   return <li className="btn btn-warning">Action 2</li>;
+      case 3:   return <li className="btn btn-secondary">Action 3</li>;
+      case 4:  return <li className="btn btn-light">Action 4</li>;
+      case 5:  return <li className="btn btn-danger">Action 5</li>;
+    
+
+      default:      return <h1>No project match</h1>
+    }
+  }
+
+  const Rated = () => {
+    switch(detail.rated) {
+
+      case "R":   return <p>Remaja</p>;
+      case "D":   return <p>Dewasa</p>;
+      case "PG-13":   return <p>Diatas 13 Tahun</p>;
+      case "G":   return <p>General</p>;
+    
+
+      default:      return <h1>No project match</h1>
+    }
+  }
+
+
+
   return (
     <>
     <NavbarAtas/>
@@ -139,7 +169,7 @@ export function MovieDetail({ match }) {
         <div className="col text-center" style={{ width: "100%" }}>
           <img
             className="img-fluid"
-            src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`}
+            src={`${detail.poster}`}
             alt={detail.title}
           ></img>
           <div className="carousel-center">
@@ -166,7 +196,7 @@ export function MovieDetail({ match }) {
 
       <div className="row mt-3">
         <div className="col">
-          <ul className="list-inline">{genresList}</ul>
+          <ul className="list-inline">{project()}</ul>
         </div>
       </div>
 
@@ -174,48 +204,48 @@ export function MovieDetail({ match }) {
         <div className="col">
           <div className="text-center">
             <ReactStars
-              count={detail.vote_average}
+              count={detail.voteCount}
               size={20}
               color1={"#f4c10f"}
             ></ReactStars>
           </div>
           <div className="mt-3">
             <p style={{ color: "#5a606b", fontWeight: "bolder" }}>OVERVIEW</p>
-            {detail.overview}
+            {detail.synopsis}
           </div>
         </div>
       </div>
 
-      <div> 
-        <Rivew/>
-      </div>
+     
       
 
       <div className="row mt-3">
         <div className="col-md-3">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>RELEASE DATE</p>
-          <p style={{ color: "#f4c10f" }}>{detail.release_date}</p>
+          <p style={{ color: "#f4c10f" }}>{detail.releaseDate}</p>
         </div>
         <div className="col-md-3">
-          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>RUN TIME</p>
-          <p style={{ color: "#f4c10f" }}>{detail.runtime}</p>
+          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>LANGUAGE</p>
+          <p style={{ color: "#f4c10f" }}>{detail.language}</p>
         </div>
         <div className="col-md-3">
-          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>BUDGET</p>
-          <p style={{ color: "#f4c10f" }}>{detail.budget}</p>
+          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>FOR</p>
+          <p style={{ color: "#f4c10f" }}>{Rated()}</p>
         </div>
         <div className="col-md-3">
-          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>HOMEPAGE</p>
-          <p style={{ color: "#f4c10f" }}>{detail.homepage}</p>
+          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>VOTE COUNT</p>
+          <p style={{ color: "#f4c10f" }}>{detail.voteCount}</p>
         </div>
       </div>
-
+      <div> 
+        <Rivew/>
+      </div>
       <div className="row mt-3">
         <div className="col">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>CASTS</p>
         </div>
       </div>
-      <div className="row mt-3">{castList}</div>
+      {/* <div className="row mt-3">{castList}</div> */}
 
       <div className="row mt-3">
         <div className="col">

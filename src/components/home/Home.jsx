@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useParams} from "react";
+import axios from 'axios';
 import {
   fetchMovies,
   fetchGenre,
@@ -11,7 +12,10 @@ import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import NavbarAtas from "../general/NavbarAtas";
 import Footer from "../general/Footer";
-import { Accordion, Card, Carousel } from "react-bootstrap";
+import Homekecil from "./Homekecil";
+import {CardColumns} from "react-bootstrap";
+
+
 export function Home() {
   const [nowPlaying, setNowPlaying] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -19,6 +23,7 @@ export function Home() {
   const [topRated, setTopRated] = useState([]);
   const [page, setPage] = useState(1); //page berapa
   const [totalPages, setTotalPages] = useState(1); //total pages keganti pas ambil pertama kali
+  const [halamanBaru , Sethalamanbaru] =useState([])
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -30,7 +35,6 @@ export function Home() {
 
       setNowPlaying(await fetchMovies());
       setGenres(await fetchGenre());
-
       setTopRated(await fetchTopratedMovie());
     };
 
@@ -45,6 +49,8 @@ export function Home() {
     })
   }, [page]); 
 
+
+
   const handleGenreClick = async (genre_id) => {
     setPage(1)
     const getMovie = fetchMovieByGenre(28)
@@ -53,16 +59,20 @@ export function Home() {
       setTotalPages(data.totalPages)
     })
   };
-
+ 
   const handleNextPage = () => { // ganti ke dinamic masih static
+
     setPage(page+1);
   }
 
-  const movies = nowPlaying.slice(0, 5).map((item, index) => {
+ 
+
+  
+  const movies = nowPlaying.slice(0, 4).map((item, index) => {
     return (
       <div style={{ height: 500, width: "100%" }} key={index}>
         <div className="carousel-center">
-          <img style={{ height: 600 }} src={item.backPoster} alt={item.title} />
+          <img style={{ height: 600 }} src={item.poster} alt={item.title} />
         </div>
         <div className="carousel-center"></div>
         <div
@@ -91,26 +101,26 @@ export function Home() {
     );
   });
 
-  const movieList = movieByGenre.slice(0, 4).map((item, index) => {
-    return (
-      <div className="col-md-3 col-sm-6" key={index}>
-        <div className="card">
-          <Link to={`/movie/${item.id}`}>
-            <img className="img-fluid" src={item.poster} alt={item.title}></img>
-          </Link>
-        </div>
-        <div className="mt-3">
-          <p style={{ fontWeight: "bolder" }}>{item.title}</p>
-          <p>Rated: {item.rating}</p>
-          <ReactStars
-            count={item.rating}
-            size={20}
-            color1={"#f4c10f"}
-          ></ReactStars>
-        </div>
-      </div>
-    );
-  });
+  // const movieList = movieByGenre.map((item, index) => {
+  //   return (
+  //     <div className="col-md-3 col-sm-6" key={index}>
+  //       <div className="card">
+  //         <Link to={`/movie/${item.id}`}>
+  //           <img className="img-fluid" src={item.poster} alt={item.title}></img>
+  //         </Link>
+  //       </div>
+  //       <div className="mt-3">
+  //         <p style={{ fontWeight: "bolder" }}>{item.title}</p>
+  //         <p>Rated: {item.rating}</p>
+  //         <ReactStars
+  //           count={item.rating}
+  //           size={20}
+  //           color1={"#f4c10f"}
+  //         ></ReactStars>
+  //       </div>
+  //     </div>
+  //   );
+  // });
   const topRatedList = topRated.slice(0, 4).map((item, index) => {
     return (
       <div className="col-md-3" key={index}>
@@ -163,7 +173,11 @@ export function Home() {
             </div>
           </div>
         </div>
-        <div className="row mt-3">{movieList}</div>
+        <div className="row mt-3">
+                <CardColumns>
+              <Homekecil />
+              </CardColumns>
+          </div>
 
         <div className="row mt-3">
           <div className="col">

@@ -1,0 +1,40 @@
+.navbar-expand-lg{
+margin: 10px;
+
+}
+
+.search-tengah{
+    display: flex;
+    justify-content: center;
+    margin:0 20vw;
+    min-width: 40vw;
+    
+}
+
+.btn-primary{
+    background-color: transparent;
+}
+
+input.form-control{
+background-color:transparent;
+
+}
+
+@media screen and (max-width: 970px) {
+    .search-tengah{
+        display: flex;
+        justify-content: center;
+      
+        width: 10vw;
+        
+    }
+    .navbar-dark .navbar-brand {
+
+        display: none;
+    }
+
+    input.form-control{
+        background-color:transparent;
+        display: none;
+        }
+  }
