@@ -16,7 +16,6 @@
     "react-rating-stars-component": "^1.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-star-rating": "^1.4.2",
     "typescript": "^3.9.3"
   },
   "scripts": {

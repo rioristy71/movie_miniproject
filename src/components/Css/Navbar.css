@@ -2,7 +2,9 @@
 margin: 10px;
 
 }
-
+.logo{
+    background-color: black;
+}
 .search-tengah{
     display: flex;
     justify-content: center;

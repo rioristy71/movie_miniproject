@@ -4,8 +4,8 @@ import ReactStars from "react-rating-stars-component";
 
 const secondExample = {
     size: 20,
-    count: 5,
-    color: "black",
+    count: 10,
+    color: "none",
     activeColor: "red",
     value: 4.5,
     a11y: true,
@@ -35,10 +35,10 @@ export default class Rivew extends Component {
             <Card.Body>
             <Form>
             <Form.Group controlId="formBasicRange">
-
+                        <Form.Label>Rating</Form.Label>
+                        <ReactStars {...secondExample} />
                     </Form.Group>
                 <Form.Group controlId="formBasicTextarea">
-                <ReactStars {...secondExample} />
                     <Form.Label>Input Komen</Form.Label>
                     <FormControl as="textarea" aria-label="With textarea" />
                     <Form.Text className="text-muted">

@@ -53,7 +53,6 @@ export const fetchMovies = async () => {
             ;
         const modifiedData = data.map((m) => ({
             id: m['id'],
-       
             popularity: m['releaseDate'],
             title: m['title'],
             poster:  m['poster'],
@@ -199,7 +198,7 @@ export const fetchCasts = async (id) => {
 
 export const fetchSimilarMovie = async (id) => {
     try {
-        const { data } = await axios.get(`https://gentle-garden-05760.herokuapp.com/movies/`, {
+        const { data } = await axios.get(`https://gentle-garden-05760.herokuapp.com/movies/2`, {
            
         });
         const modifiedData = data.map((m) => ({
