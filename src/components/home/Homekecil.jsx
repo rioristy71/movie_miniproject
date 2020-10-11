@@ -35,23 +35,22 @@ const Homekecil = () => {
   // })
     return (
      
-      <div className="col ">
-        <Card  border="primary" >
-         <Link to={`/movie/${movies[ind].id}`}>
-          <Card.Img  variant="top" src={movies[ind].poster} />
-          <Card.Body>
-            <Card.Title> <h2>{movies[ind].title}</h2></Card.Title>
-            <Card.Text>
-            {movies[ind].synopsis.slice(0,60)} ....
-            </Card.Text>
-            <ReactStars
-            count={movies[ind].voteCount}
+      <div className="col" >
+        <div className="card">
+          <Link to={`/movie/${movies[ind].id}`}>
+            <img className="img-fluid" src={movies[ind].poster}></img>
+          </Link>
+        </div>
+        <div className="mt-3">
+          <p style={{ fontWeight: "bolder" }}>{movies[ind].title}</p>
+          <p>Rated: {movies[ind].rating}</p>
+          <ReactStars
+            count={movies[ind].rating}
             size={20}
             color1={"#f4c10f"}
           ></ReactStars>
-          </Card.Body>
-          </Link>
-        </Card>
+        </div>
+     <br></br>
     
         {/* <img src="https://m.media-amazon.com/images/M/MV5BZmU4NzVkZjEtZmQxMi00ZDY5LWI3ZDYtMWRmZjE5YmYwZjQzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"></img> */}
       </div>
