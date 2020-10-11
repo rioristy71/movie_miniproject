@@ -258,7 +258,11 @@ const [RegisterState , SetRegisterState] = useState({
             id={`dropdown-button-drop-${direction}`}
             drop={direction}
             variant="outline-light"
+<<<<<<< HEAD
             title={` icon  `}
+=======
+            title={` C ! N E M A T ! C  `}
+>>>>>>> b5fe3c705353f398ad9e2c0242f7d320b6a4377a
           >
             <Dropdown.Item eventKey="1">Home</Dropdown.Item>
             

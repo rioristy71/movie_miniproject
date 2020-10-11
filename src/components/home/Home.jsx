@@ -13,6 +13,12 @@ import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import NavbarAtas from "../general/NavbarAtas";
 import Footer from "../general/Footer";
+<<<<<<< HEAD
+=======
+import Homekecil from "./Homekecil";
+import {CardColumns} from "react-bootstrap";
+
+>>>>>>> b5fe3c705353f398ad9e2c0242f7d320b6a4377a
 
 export function Home() {
   const [nowPlaying, setNowPlaying] = useState([]);
@@ -72,7 +78,7 @@ export function Home() {
     return (
       <div style={{ height: 500, width: "100%" }} key={index}>
         <div className="carousel-center">
-          <img style={{ height: 600 }} src={item.backPoster} alt={item.title} />
+          <img style={{ height: 600 }} src={item.poster} alt={item.title} />
         </div>
         <div className="carousel-center"></div>
         <div
@@ -101,6 +107,7 @@ export function Home() {
     );
   });
 
+<<<<<<< HEAD
   const movieList = movieByGenre.map((item, index) => {
     return (
       <div className="col-md-3 col-sm-6" key={index}>
@@ -121,6 +128,28 @@ export function Home() {
       </div>
     );
   });
+=======
+  // const movieList = movieByGenre.map((item, index) => {
+  //   return (
+  //     <div className="col-md-3 col-sm-6" key={index}>
+  //       <div className="card">
+  //         <Link to={`/movie/${item.id}`}>
+  //           <img className="img-fluid" src={item.poster} alt={item.title}></img>
+  //         </Link>
+  //       </div>
+  //       <div className="mt-3">
+  //         <p style={{ fontWeight: "bolder" }}>{item.title}</p>
+  //         <p>Rated: {item.rating}</p>
+  //         <ReactStars
+  //           count={item.rating}
+  //           size={20}
+  //           color1={"#f4c10f"}
+  //         ></ReactStars>
+  //       </div>
+  //     </div>
+  //   );
+  // });
+>>>>>>> b5fe3c705353f398ad9e2c0242f7d320b6a4377a
   const topRatedList = topRated.slice(0, 4).map((item, index) => {
     return (
       <div className="col-md-3" key={index}>
@@ -173,7 +202,11 @@ export function Home() {
             </div>
           </div>
         </div>
-        <div className="row mt-3">{movieList}</div>
+        <div className="row mt-3">
+                <CardColumns>
+              <Homekecil />
+              </CardColumns>
+          </div>
 
         <div className="row mt-3">
           <div className="col">

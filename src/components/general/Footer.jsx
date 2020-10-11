@@ -6,7 +6,7 @@ export default class footer extends Component {
                         <div>
                             <div className="row mt-3 mb-5">
                     <div className="col-md-8 col-sm-6" style={{ color: "#5a606b" }}>
-                    <h3>ABOUT ME</h3>
+                    <h3>C ! N E M A T ! C</h3>
                     <p>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi
                         error earum perspiciatis praesentium sint ipsum provident blanditiis
@@ -19,7 +19,33 @@ export default class footer extends Component {
                         dolore nihil? Nulla sit, recusandae ea tenetur rerum deserunt sequi
                         earum?
                     </p>
-                    <ul className="list-inline">
+                    </div>
+                    <div className="col-md-4 col-sm-6" style={{ color: "#5a606b" }}>
+                    <h3>Contac </h3>
+                    <ul className="list-unstyled">
+                        <li>
+                        <p>
+                            <strong>
+                            <i className="fas fa-map-marker-alt"></i> Address:
+                            </strong>{" "}
+                            Indonesia
+                        </p>
+                        </li>
+                        <li>
+                        <p>
+                            <strong>
+                            <i className="fas fa-map-marker-alt"></i> Phone:
+                            </strong>{" "}
+                            +62 812xxxxxxxx
+                        </p>
+                        </li>
+                        <li>
+                        <p>
+                            <strong>
+                            <i className="fas fa-envelope"></i> Email:
+                            </strong>{" "}
+                            C!NEMAT!C@infomail.com
+                        </p>
                         <li className="list-inline-item">
                         <a href="/" style={{ color: "#f4c10f" }}>
                             <i className="fab fa-facebook"></i>
@@ -40,34 +66,6 @@ export default class footer extends Component {
                             <i className="fab fa-instagram"></i>
                         </a>
                         </li>
-                    </ul>
-                    </div>
-                    <div className="col-md-4 col-sm-6" style={{ color: "#5a606b" }}>
-                    <h3>KEEP IN TOUCH</h3>
-                    <ul className="list-unstyled">
-                        <li>
-                        <p>
-                            <strong>
-                            <i className="fas fa-map-marker-alt"></i> Address:
-                            </strong>{" "}
-                            Medan, Indonesia
-                        </p>
-                        </li>
-                        <li>
-                        <p>
-                            <strong>
-                            <i className="fas fa-map-marker-alt"></i> Phone:
-                            </strong>{" "}
-                            rahasia
-                        </p>
-                        </li>
-                        <li>
-                        <p>
-                            <strong>
-                            <i className="fas fa-envelope"></i> Email:
-                            </strong>{" "}
-                            info@infomail.com
-                        </p>
                         </li>
                     </ul>
                     </div>

@@ -2,9 +2,15 @@ import axios from 'axios';
 
 const apiKey = 'b06acbfc13f5d2a71bfbbdea12dd0de3';
 const url = 'https://api.themoviedb.org/3';
+<<<<<<< HEAD
 const nowPlayingUrl = `${url}/movie/now_playing`;
 const halamanhomeplay = `https://gentle-garden-05760.herokuapp.com/movies/1`;
 const topratedUrl = `${url}/movie/top_rated`;
+=======
+const nowPlayingUrl = `https://gentle-garden-05760.herokuapp.com/movies`;
+const halamanhomeplay = `https://gentle-garden-05760.herokuapp.com/movies/`;
+const topratedUrl = `https://gentle-garden-05760.herokuapp.com/movies/3`;
+>>>>>>> b5fe3c705353f398ad9e2c0242f7d320b6a4377a
 const movieUrl = `${url}/movie`;
 const genreUrl = `${url}/genre/movie/list`;
 const moviesUrl = `${url}/discover/movie`;
@@ -14,10 +20,14 @@ const personUrl = `${url}/trending/person/week`;
 // fatch movie by db sendiri 
 export const fetchMovies2 = async () => {
     try {
+<<<<<<< HEAD
         const { data } = await axios.get(halamanhomeplay, {
           
 
             
+=======
+        const { data } = await axios.get(halamanhomeplay, {                      
+>>>>>>> b5fe3c705353f398ad9e2c0242f7d320b6a4377a
         })
 
        
@@ -44,11 +54,14 @@ export const fetchMovies2 = async () => {
 
 // end fatch movie from back end
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> b5fe3c705353f398ad9e2c0242f7d320b6a4377a
 export const fetchMovies = async () => {
     try {
         const { data } = await axios.get(nowPlayingUrl, {
@@ -58,16 +71,14 @@ export const fetchMovies = async () => {
                 page: 1
             }
         })
-
-        const posterUrl = 'https://image.tmdb.org/t/p/original/';
-        const modifiedData = data['results'].map((m) => ({
+            ;
+        const modifiedData = data.map((m) => ({
             id: m['id'],
-            backPoster: posterUrl + m['backdrop_path'],
-            popularity: m['popularith'],
+            popularity: m['releaseDate'],
             title: m['title'],
-            poster: posterUrl + m['poster_path'],
-            overview: m['overview'],
-            rating: m['vote_average'],
+            poster:  m['poster'],
+            overview: m['synopsis'],
+            rating: m['rated'],
         }))
 
         return modifiedData;
@@ -148,15 +159,15 @@ export const fetchTopratedMovie = async () => {
                 page: 1
             }
         })
-        const posterUrl = 'https://image.tmdb.org/t/p/original/';
-        const modifiedData = data['results'].map((m) => ({
+      
+        const modifiedData = data.map((m) => ({
             id: m['id'],
-            backPoster: posterUrl + m['backdrop_path'],
-            popularity: m['popularith'],
+       
+            popularity: m['releaseDate'],
             title: m['title'],
-            poster: posterUrl + m['poster_path'],
-            overview: m['overview'],
-            rating: m['vote_average'],
+            poster:  m['poster'],
+            overview: m['synopsis'],
+            rating: m['rated'],
         }))
 
         return modifiedData;
@@ -167,10 +178,10 @@ export const fetchTopratedMovie = async () => {
 
 export const fetchMovieDetail = async (id) => {
     try {
-        const { data } = await axios.get(`${movieUrl}/${id}`, {
+        const { data } = await axios.get(`https://gentle-garden-05760.herokuapp.com/movies/details/${id}`, {
             params: {
-                api_key: apiKey,
-                language: 'en_US'
+                // api_key: apiKey,
+                // language: 'en_US'
             }
         });
         return data;
@@ -179,9 +190,9 @@ export const fetchMovieDetail = async (id) => {
 
 export const fetchMovieVideos = async (id) => {
     try {
-        const { data } = await axios.get(`${movieUrl}/${id}/videos`, {
+        const { data } = await axios.get(`https://gentle-garden-05760.herokuapp.com/movies/details/${id}`, {
             params: {
-                api_key: apiKey,
+                // api_key: apiKey,
             }
         });
         return data['results'][0];
@@ -190,41 +201,36 @@ export const fetchMovieVideos = async (id) => {
 
 export const fetchCasts = async (id) => {
     try {
-        const { data } = await axios.get(`${movieUrl}/${id}/credits`, {
-            params: {
-                api_key: apiKey,
-            }
-        });
-        const modifiedData = data['cast'].map((c) => ({
-            id: c['cast_id'],
-            character: c['character'],
-            name: c['name'],
-            img: 'https://image.tmdb.org/t/p/w200' + c['profile_path'],
-        }))
+        // const { data } = await axios.get(`${movieUrl}/${id}/credits`, {
+        //     // params: {
+        //     //     api_key: apiKey,
+        //     // }
+        // });
+        // const modifiedData = data['cast'].map((c) => ({
+        //     id: c['cast_id'],
+        //     character: c['character'],
+        //     name: c['name'],
+        //     img: 'https://image.tmdb.org/t/p/w200' + c['profile_path'],
+        // }))
 
-        return modifiedData;
+        return ;
     } catch (error) { }
 }
 
 export const fetchSimilarMovie = async (id) => {
     try {
-        const { data } = await axios.get(`${movieUrl}/${id}/similar`, {
-            params: {
-                api_key: apiKey,
-                language: 'en_US'
-            }
+        const { data } = await axios.get(`https://gentle-garden-05760.herokuapp.com/movies/2`, {
+           
         });
-        const posterUrl = 'https://image.tmdb.org/t/p/original/';
-        const modifiedData = data['results'].map((m) => ({
+        const modifiedData = data.map((m) => ({
             id: m['id'],
-            backPoster: posterUrl + m['backdrop_path'],
-            popularity: m['popularith'],
+            popularity: m['releaseDate'],
             title: m['title'],
-            poster: posterUrl + m['poster_path'],
+            poster: m['poster'],
             overview: m['overview'],
-            rating: m['vote_average'],
+            rating: m['voteCount'],
         }))
 
-        return modifiedData;
+        return modifiedData; 
     } catch (error) { }
 }
