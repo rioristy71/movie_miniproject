@@ -11,6 +11,7 @@ export default function LoginBtn() {
     const [show3, setShow3] = useState(false);
     const [show4, setShow4] = useState(false);
     const [isLogin, isLoginini] = useState(localStorage.getItem('isLogin'))   
+    const [image, setImage] = useState('')
 // untuk perubahan 
 const [inputanAll, setInputAll ] = useState({
 
@@ -22,7 +23,8 @@ const [RegisterState , SetRegisterState] = useState({
    username : "",
    password : "",
    name : "",
-   image : "",
+   image : [],
+   role : "Member"
 });
 
   
@@ -54,9 +56,16 @@ const [RegisterState , SetRegisterState] = useState({
     SetRegisterState({...RegisterState, [namasaya]:e.target.value})
   } 
 
+
+const uploadImage = async e =>{
+  const files = e.target.files
+  SetRegisterState({...RegisterState, image:files[0]})
+  // console.log(files[0])
+}
+
   const OnKliklogin = e =>{
     // on clik login    
-   console.log({inputanAll});
+  //  console.log({inputanAll});
    fetch('https://gentle-garden-05760.herokuapp.com/users/login', {
     method: 'POST',
     headers: {
@@ -80,11 +89,13 @@ const [RegisterState , SetRegisterState] = useState({
   const daftarbaru2 = e =>{
     // on clik daftar    
     e.preventDefault();
-    console.log({RegisterState});
+    // console.log({RegisterState});
     fetch('https://gentle-garden-05760.herokuapp.com/users/register', {
      method: 'POST',
      headers: {
          'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin ':'origin-list'
+         "Host":'https://gentle-garden-05760.herokuapp.com'
      },
      body: JSON.stringify(RegisterState)
        })
@@ -180,14 +191,11 @@ const [RegisterState , SetRegisterState] = useState({
                         </Form.Text>
                     </Form.Group>
                     <Form.Group>
-                    <Form.File 
-                          onChange={perubahan2}
-                          nama="image"
-                          id="custom-file-translate-scss"
-                          label="Custom file input"
-                          lang="en"
-                          custom
-                        />
+                    <input type="file"
+                      name="file"
+                      placeholder="Upload an image"
+                      onChange={uploadImage}
+                    />
                     </Form.Group>
                     <Form.Group controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
