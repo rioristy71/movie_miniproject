@@ -198,7 +198,9 @@ export const fetchCasts = async (id) => {
 
 export const fetchSimilarMovie = async (id) => {
     try {
+
         const { data } = await axios.get(`https://gentle-garden-05760.herokuapp.com/movies/2`, {
+
            
         });
         const modifiedData = data.map((m) => ({

@@ -126,12 +126,13 @@ export function MovieDetail({ match }) {
   const project = () => {
     console.log(similarMovie);
     switch(detail.genre) {
-
       case 1:   return <li className="btn btn-danger">Action</li>;
       case 2:   return <li className="btn btn-warning">Animation</li>;
       case 3:   return <li className="btn btn-secondary">Horor</li>;
       case 4:  return <li className="btn btn-light">Thiler</li>;
       case 5:  return <li className="btn btn-danger">Comedy</li>;
+
+
     
 
       default:      return <h1>No project match</h1>
