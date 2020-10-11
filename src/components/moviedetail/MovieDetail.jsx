@@ -12,7 +12,7 @@ import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 import Footer from "../general/Footer";
 import NavbarAtas from "../general/NavbarAtas";
-import Rivew from "./Rivew";
+import RevFCC from "./RevFCC";
 
 
 export function MovieDetail({ match }) {
@@ -20,15 +20,12 @@ export function MovieDetail({ match }) {
   let genres = [];
   const [isOpen, setIsOpen] = useState(false);
   const [detail, setDetail] = useState([]);
-  const [video, setVideo] = useState([]);
-  const [casts, setCasts] = useState([]);
   const [similarMovie, setSimilarMovie] = useState([]);
 
   useEffect(() => {
     const fetchAPI = async () => {
       setDetail(await fetchMovieDetail(params.id));
-      setVideo(await fetchMovieVideos(params.id));
-      setCasts(await fetchCasts(params.id));
+      
       setSimilarMovie(await fetchSimilarMovie(params.id));
     };
 
@@ -140,12 +137,10 @@ export function MovieDetail({ match }) {
 
   const Rated = () => {
     switch(detail.rated) {
-
       case "R":   return <p>Remaja</p>;
       case "D":   return <p>Dewasa</p>;
       case "PG-13":   return <p>Diatas 13 Tahun</p>;
       case "G":   return <p>General</p>;
-    
 
       default:      return <h1>No project match</h1>
     }
@@ -202,13 +197,6 @@ export function MovieDetail({ match }) {
 
       <div className="row mt-3">
         <div className="col">
-          <div className="text-center">
-            <ReactStars
-              count={detail.voteCount}
-              size={20}
-              color1={"#f4c10f"}
-            ></ReactStars>
-          </div>
           <div className="mt-3">
             <p style={{ color: "#5a606b", fontWeight: "bolder" }}>OVERVIEW</p>
             {detail.synopsis}
@@ -238,7 +226,8 @@ export function MovieDetail({ match }) {
         </div>
       </div>
       <div> 
-        <Rivew/>
+        <RevFCC/>
+       
       </div>
       <div className="row mt-3">
         <div className="col">

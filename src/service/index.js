@@ -2,15 +2,10 @@ import axios from 'axios';
 
 const apiKey = 'b06acbfc13f5d2a71bfbbdea12dd0de3';
 const url = 'https://api.themoviedb.org/3';
-<<<<<<< HEAD
-const nowPlayingUrl = `${url}/movie/now_playing`;
-const halamanhomeplay = `https://gentle-garden-05760.herokuapp.com/movies/1`;
-const topratedUrl = `${url}/movie/top_rated`;
-=======
+
 const nowPlayingUrl = `https://gentle-garden-05760.herokuapp.com/movies`;
 const halamanhomeplay = `https://gentle-garden-05760.herokuapp.com/movies/`;
 const topratedUrl = `https://gentle-garden-05760.herokuapp.com/movies/3`;
->>>>>>> b5fe3c705353f398ad9e2c0242f7d320b6a4377a
 const movieUrl = `${url}/movie`;
 const genreUrl = `${url}/genre/movie/list`;
 const moviesUrl = `${url}/discover/movie`;
@@ -20,14 +15,10 @@ const personUrl = `${url}/trending/person/week`;
 // fatch movie by db sendiri 
 export const fetchMovies2 = async () => {
     try {
-<<<<<<< HEAD
-        const { data } = await axios.get(halamanhomeplay, {
-          
 
-            
-=======
+
         const { data } = await axios.get(halamanhomeplay, {                      
->>>>>>> b5fe3c705353f398ad9e2c0242f7d320b6a4377a
+
         })
 
        
@@ -54,14 +45,6 @@ export const fetchMovies2 = async () => {
 
 // end fatch movie from back end
 
-<<<<<<< HEAD
-
-
-
-
-
-=======
->>>>>>> b5fe3c705353f398ad9e2c0242f7d320b6a4377a
 export const fetchMovies = async () => {
     try {
         const { data } = await axios.get(nowPlayingUrl, {
