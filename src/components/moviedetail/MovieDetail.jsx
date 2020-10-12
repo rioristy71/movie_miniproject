@@ -107,9 +107,10 @@ export function MovieDetail({ match }) {
             <img className="img-fluid" src={item.poster} alt={item.title}></img>
           </Link>
         </div>
+        {console.log(item)}
         <div className="mt-3">
           <p style={{ fontWeight: "bolder" }}>{item.title}</p>
-          <p>Rated: {item.rating}</p>
+          <p>Release Date: {item.popularity}</p>
           <ReactStars
             count={item.rating}
             size={20}

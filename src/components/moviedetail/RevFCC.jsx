@@ -51,7 +51,9 @@ export default function RevFCC(match) {
     const namasaya = localStorage.getItem("token");
     // console.log(namasaya);
     // setInputAll({...inputanAll, [namasaya]:e.target.value})
-// console.log('params' + params)
+// console.log('params' + params
+    // console.log(kon)
+
     fetch(
       `https://gentle-garden-05760.herokuapp.com/review/movie=${params}/1`,
       {
@@ -85,7 +87,6 @@ export default function RevFCC(match) {
       activeColor: "red",
       value: item.rating,
       a11y: true,
-      isHalf: true,
       emptyIcon: <i className="far fa-star" />,
       halfIcon: <i className="fa fa-star-half-alt" />,
       filledIcon: <i className="fa fa-star" />,
@@ -148,7 +149,7 @@ export default function RevFCC(match) {
 
   return (
     <div>
-      <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+      <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">
         <Tab eventKey="home" onClick={perubahan()} title="Comente">
           {tesmaping}
         </Tab>
@@ -162,7 +163,7 @@ export default function RevFCC(match) {
               <Form.Group controlId="formBasicTextarea">
                 <Form.Label>Input Komen</Form.Label>
                 <FormControl onChange={inputdataonchange} nama="comment" as="textarea" aria-label="With textarea" />
-                <Form.Text className="text-muted">nyobak tok</Form.Text>
+                <Form.Text className="text-muted">isi dengan riview anda</Form.Text>
               </Form.Group>
                
               <Button variant="primary"  onClick={AddRivew} type="submit">

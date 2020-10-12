@@ -1,17 +1,4 @@
-tempat penympanan
-fetch('https://gentle-garden-05760.herokuapp.com/users/login', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(inputanAll)
-      })
-      .then(res => res.json())
-      .then(result => {
-          console.log('Success:', result);
-          localStorage.setItem('token', result.access_token);
-          localStorage.setItem('isLogin', true);   
-           console.log(localStorage);
-           console.log(isLogin);
-           window.location.reload(false);
-      }).catch((err)=>(console.log("error")))
+  <div className="col " style={{ color: "#5a606b" }}>
+       <Bygenre/>
+       {/* bisa di isi lagi  */}
+        </div>

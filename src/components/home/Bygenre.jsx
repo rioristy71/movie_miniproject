@@ -50,16 +50,15 @@ export default function Bygenre() {
     <div>
       <Card  style={{backgroundColor:'transparent' }} >
         <Card.Header>
-          <Nav variant="tabs"  className="justify-content-center">
+          <Nav variant="tabs" defaultActiveKey="#Action"  className="justify-content-center">
             <Nav.Item >
-              <Nav.Link
+              <Nav.Link 
                 onClick={function (event) {
                   genre(1);
                 }}
-                href="#Action
-"
+                href="#Action"
               >
-                Action{" "}
+                Action
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
