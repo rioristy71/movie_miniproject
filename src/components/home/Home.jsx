@@ -25,7 +25,18 @@ export function Home() {
   const [topRated, setTopRated] = useState([]);
   const [page, setPage] = useState(1); //page berapa
   const [totalPages, setTotalPages] = useState(1); //total pages keganti pas ambil pertama kali
-  const [halamanBaru, Sethalamanbaru] = useState([]);
+  const [pagination, setPagination] = useState(1);
+
+
+  const pageNext =()=>
+  {
+
+      const pagenext = pagination+1;
+    setPagination(pagenext)
+    console.log(pagination)
+
+
+  }
 
 
 
@@ -152,8 +163,12 @@ export function Home() {
     <div>
       <NavbarAtas />
       <div className="container">
-        <div className="row mt-2">
-          <div className="col">
+        <div className="row mt-2 border">
+        <div className="col " style={{ color: "#5a606b" }}>
+       <Bygenre/>
+       {/* bisa di isi lagi  */}
+        </div>
+          <div className="col mt-1 mb-1 ">
             <RBCarousel
               autoplay={true}
               pauseOnVisibility={true}
@@ -166,10 +181,7 @@ export function Home() {
           </div>
         </div>
 
-        <div className="col " style={{ color: "#5a606b" }}>
-       <Bygenre/>
-       {/* bisa di isi lagi  */}
-        </div>
+       
 
         {/* <div className="row mt-3">
           <div className="col">
@@ -184,8 +196,15 @@ export function Home() {
               LIST MOVIE
             </p>
             <br></br>
+
+
+            <button onClick={pageNext}>next</button>
+            
+            <button>pref</button>
+
+
             <CardColumns>
-              <Homekecil />
+              <Homekecil pagination={pagination} />
             </CardColumns>
           </div>
         </div>

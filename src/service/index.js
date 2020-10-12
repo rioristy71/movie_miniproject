@@ -3,7 +3,7 @@ import axios from 'axios';
 const apiKey = 'b06acbfc13f5d2a71bfbbdea12dd0de3';
 const url = 'https://api.themoviedb.org/3';
 
-const nowPlayingUrl = `https://gentle-garden-05760.herokuapp.com/movies`;
+const nowPlayingUrl = `https://gentle-garden-05760.herokuapp.com/movies/2`;
 const halamanhomeplay = `https://gentle-garden-05760.herokuapp.com/movies/`;
 const topratedUrl = `https://gentle-garden-05760.herokuapp.com/movies/3`;
 const movieUrl = `${url}/movie`;

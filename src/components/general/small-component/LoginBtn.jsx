@@ -355,9 +355,9 @@ const EditProfil =()=>{
     );
   } else {
     return (
-      <div>
+      <div className="col col-sm-12">
         {ambildata()}
-        <div className="mb-2">
+        <div className="col">
           {["left"].map((direction) => (
             <DropdownButton
               className="btn-kebawah"

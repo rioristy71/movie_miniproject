@@ -3,14 +3,18 @@ import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import "./homekecil.css";
 import qs from "querystring";
+
 // import ReactStars from "react-rating-stars-component";
-const Homekecil = () => {
+const Homekecil = ({pagination}) => {
   const location = useLocation();
   const [movies, setMovies] = useState([]);
+  const [Next, setNext] = useState([]);
+  const [Prev, setPrev] = useState([]);
 
   const movieSearchUrl =
     "https://gentle-garden-05760.herokuapp.com/movies/search"; //post
-  const movieListUrl = `https://gentle-garden-05760.herokuapp.com/movies/1`; //get
+  const movieListUrl = `https://gentle-garden-05760.herokuapp.com/movies/3`; //get
+
 
   const movie1 = async () => {
     const fetch = await axios.get(movieListUrl, {
@@ -67,6 +71,7 @@ const Homekecil = () => {
     //     }
     // })
     return (
+      <>
       <div className="col">
         <div className="card">
           <Link to={`/movie/${movies[ind].id}`}>
@@ -84,6 +89,7 @@ const Homekecil = () => {
           <br></br>
         </div>
       </div>
+      </>
     );
   });
   return <>{movieRender}</>;
