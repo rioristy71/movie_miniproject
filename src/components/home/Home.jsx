@@ -1,5 +1,5 @@
-import React, { useState, useEffect ,useParams} from "react";
-import axios from 'axios';
+import React, { useState, useEffect, useParams } from "react";
+import axios from "axios";
 import {
   fetchMovies2,
   fetchMovies,
@@ -9,67 +9,69 @@ import {
 } from "../../service";
 import RBCarousel from "react-bootstrap-carousel";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import NavbarAtas from "../general/NavbarAtas";
 import Footer from "../general/Footer";
 import Homekecil from "./Homekecil";
-import {CardColumns} from "react-bootstrap";
+import { CardColumns } from "react-bootstrap";
+import Bygenre from "./Bygenre";
 
 export function Home() {
+  const history = useHistory();
   const [nowPlaying, setNowPlaying] = useState([]);
   const [genres, setGenres] = useState([]);
   const [movieByGenre, setMovieByGenre] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [page, setPage] = useState(1); //page berapa
   const [totalPages, setTotalPages] = useState(1); //total pages keganti pas ambil pertama kali
-  const [halamanBaru , Sethalamanbaru] =useState([])
+  const [halamanBaru, Sethalamanbaru] = useState([]);
+
+
 
   useEffect(() => {
     const fetchAPI = async () => {
-      const getMovie = fetchMovieByGenre(28) //ganti untuk dapet totalpages
+      const getMovie = fetchMovieByGenre(28); //ganti untuk dapet totalpages
       getMovie.then((data) => {
-        setMovieByGenre(data.result)
-        setTotalPages(data.totalPages)
-      })
+        setMovieByGenre(data.result);
+        setTotalPages(data.totalPages);
+      });
 
       setNowPlaying(await fetchMovies());
       setGenres(await fetchGenre());
       setTopRated(await fetchTopratedMovie());
-
-     
+      history.replace({
+        search: '',
+      })
     };
 
     fetchAPI();
   }, []);
 
-  useEffect(() => { // ngecheck state page keganti atau tidak kalo ganti ambil data berdasarkan page
-    const getMovie = fetchMovieByGenre(28, page)
-    getMovie.then((data) =>{ 
-      setMovieByGenre(data.result)
-      setTotalPages(data.totalPages)
-    })
-  }, [page]); 
-
-
+  useEffect(() => {
+    // ngecheck state page keganti atau tidak kalo ganti ambil data berdasarkan page
+    const getMovie = fetchMovieByGenre(28, page);
+    getMovie.then((data) => {
+      setMovieByGenre(data.result);
+      setTotalPages(data.totalPages);
+    });
+  }, [page]);
 
   const handleGenreClick = async (genre_id) => {
-    setPage(1)
-    const getMovie = fetchMovieByGenre(28)
-    getMovie.then((data) =>{ 
-      setMovieByGenre(data.result)
-      setTotalPages(data.totalPages)
-    })
+    setPage(1);
+    const getMovie = fetchMovieByGenre(28);
+    getMovie.then((data) => {
+      setMovieByGenre(data.result);
+      setTotalPages(data.totalPages);
+    });
   };
- 
-  const handleNextPage = () => { // ganti ke dinamic masih static
 
-    setPage(page+1);
-  }
+  const handleNextPage = () => {
+    // ganti ke dinamic masih static
 
- 
+    setPage(page + 1);
+  };
 
-  
   const movies = nowPlaying.slice(0, 4).map((item, index) => {
     return (
       <div style={{ height: 500, width: "100%" }} key={index}>
@@ -103,7 +105,6 @@ export function Home() {
     );
   });
 
-
   // const movieList = movieByGenre.map((item, index) => {
   //   return (
   //     <div className="col-md-3 col-sm-6" key={index}>
@@ -127,7 +128,7 @@ export function Home() {
 
   const topRatedList = topRated.slice(0, 4).map((item, index) => {
     return (
-      <div className="col" >
+      <div className="col">
         <div className="card">
           <Link to={`/movie/${item.id}`}>
             <img className="img-fluid" src={item.poster}></img>
@@ -141,7 +142,7 @@ export function Home() {
             size={20}
             color1={"#f4c10f"}
           ></ReactStars> */}
-        <br></br>
+          <br></br>
         </div>
       </div>
     );
@@ -165,10 +166,9 @@ export function Home() {
           </div>
         </div>
 
-        <div className="row mt-3">
-          <div className="col">
-            <ul className="list-inline">{genreList}</ul>
-          </div>
+        <div className="col " style={{ color: "#5a606b" }}>
+       <Bygenre/>
+       {/* bisa di isi lagi  */}
         </div>
 
         {/* <div className="row mt-3">
@@ -180,15 +180,15 @@ export function Home() {
         </div> */}
         <div className="row mt-3">
           <div className="col">
-        <p className="font-weight-bold" style={{ color: "#5a606b" }}>
+            <p className="font-weight-bold" style={{ color: "#5a606b" }}>
               LIST MOVIE
             </p>
             <br></br>
-                <CardColumns>
+            <CardColumns>
               <Homekecil />
-              </CardColumns>
+            </CardColumns>
           </div>
-          </div>
+        </div>
 
         <div className="row mt-3">
           <div className="col">
