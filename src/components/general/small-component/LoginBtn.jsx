@@ -292,7 +292,11 @@ const EditProfil =()=>{
                     onChange={uploadImage}
                   />
                 </Form.Group>
-              
+                
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control  nama ="password"  onChange={perubahan2} type="password" placeholder="Password" />
+                    </Form.Group>
               </Form>
 
               {/*isi Forom end  */}
