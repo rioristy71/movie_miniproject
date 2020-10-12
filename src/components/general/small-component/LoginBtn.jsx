@@ -11,7 +11,7 @@ export default function LoginBtn() {
     const [show3, setShow3] = useState(false);
     const [show4, setShow4] = useState(false);
     const [isLogin, isLoginini] = useState(localStorage.getItem('isLogin'))   
-    const [image, setImage] = useState('')
+    const [imageUpload, setImage] = useState({})
 // untuk perubahan 
 const [inputanAll, setInputAll ] = useState({
 
@@ -23,7 +23,7 @@ const [RegisterState , SetRegisterState] = useState({
    username : "",
    password : "",
    name : "",
-   image : [],
+   image : {},
    role : "Member"
 });
 
@@ -59,13 +59,15 @@ const [RegisterState , SetRegisterState] = useState({
 
 const uploadImage = async e =>{
   const files = e.target.files
-  SetRegisterState({...RegisterState, image:files[0]})
-  // console.log(files[0])
+  setImage({...imageUpload, image:files[0]})
+  console.log(imageUpload)
+
 }
 
   const OnKliklogin = e =>{
     // on clik login    
   //  console.log({inputanAll});
+  
    fetch('https://gentle-garden-05760.herokuapp.com/users/login', {
     method: 'POST',
     headers: {
@@ -87,29 +89,58 @@ const uploadImage = async e =>{
   }
 
   const daftarbaru2 = e =>{
-    // on clik daftar    
     e.preventDefault();
-    // console.log({RegisterState});
-    fetch('https://gentle-garden-05760.herokuapp.com/users/register', {
-     method: 'POST',
-     headers: {
-         'Content-Type': 'application/json',
-         'Access-Control-Allow-Origin ':'origin-list'
-         "Host":'https://gentle-garden-05760.herokuapp.com'
-     },
-     body: JSON.stringify(RegisterState)
-       })
-       .then(res => res.json())
-       .then(result => {
-           console.log('Success:', result);
-           localStorage.setItem('token', result.access_token);
-           localStorage.setItem('isLogin', true);   
-            console.log(localStorage);
-            console.log(isLogin);
-            window.location.reload(false);
-       }).catch((err)=>(console.log("error")))
- 
+    // register state 
+  
+    var formdata = new FormData();
+    formdata.append("username", `${RegisterState.username}`);
+    formdata.append("password", `${RegisterState.password}`);
+    formdata.append("name", `${RegisterState.name}`);
+    formdata.append("image", imageUpload.image , `${imageUpload.image.name}`);
+    
+    var requestOptions = {
+      method: 'POST',
+      body: formdata,
+      redirect: 'follow'
+    };
+    
+    fetch("https://gentle-garden-05760.herokuapp.com/users/register", requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log('Success:', result);
+        localStorage.setItem('token', result.access_token);
+        localStorage.setItem('isLogin', true);   
+         console.log(localStorage);
+         console.log(isLogin);
+         window.location.reload(false);
+    }).catch((err)=>(console.log("error")))
 
+
+
+
+
+
+    // on clik daftar    
+    
+    // console.log({RegisterState});
+    // fetch('https://gentle-garden-05760.herokuapp.com/users/register', {
+    //  method: 'POST',
+    //  headers: {
+    //      'Content-Type': 'application/json',
+    //     //  'Access-Control-Allow-Origin ':'origin-list'
+    //  },
+    //  body:  (RegisterState)
+    //    })
+    //    .then(res => res.json())
+    //    .then(result => {
+    //        console.log('Success:', result);
+    //        localStorage.setItem('token', result.access_token);
+    //        localStorage.setItem('isLogin', true);   
+    //         console.log(localStorage);
+    //         console.log(isLogin);
+    //         window.location.reload(false);
+    //    }).catch((err)=>(console.log("error")))
+ 
 
    console.log({RegisterState});
   }
