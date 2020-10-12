@@ -127,20 +127,21 @@ export function Home() {
 
   const topRatedList = topRated.slice(0, 4).map((item, index) => {
     return (
-      <div className="col-md-3" key={index}>
+      <div className="col" >
         <div className="card">
           <Link to={`/movie/${item.id}`}>
-            <img className="img-fluid" src={item.poster} alt={item.title}></img>
+            <img className="img-fluid" src={item.poster}></img>
           </Link>
         </div>
         <div className="mt-3">
           <p style={{ fontWeight: "bolder" }}>{item.title}</p>
-          <p>Rated: {item.rating}</p>
-          <ReactStars
+          {/* <p>Rated: {item.rating}</p> */}
+          {/* <ReactStars
             count={item.rating}
             size={20}
             color1={"#f4c10f"}
-          ></ReactStars>
+          ></ReactStars> */}
+        <br></br>
         </div>
       </div>
     );
@@ -170,17 +171,23 @@ export function Home() {
           </div>
         </div>
 
-        <div className="row mt-3">
+        {/* <div className="row mt-3">
           <div className="col">
             <div className="float-right">
               <i className="far fa-arrow-alt-circle-right" onClick={handleNextPage}></i>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="row mt-3">
+          <div className="col">
+        <p className="font-weight-bold" style={{ color: "#5a606b" }}>
+              LIST MOVIE
+            </p>
+            <br></br>
                 <CardColumns>
               <Homekecil />
               </CardColumns>
+          </div>
           </div>
 
         <div className="row mt-3">
@@ -191,13 +198,13 @@ export function Home() {
           </div>
         </div>
 
-        <div className="row mt-3">
+        {/* <div className="row mt-3">
           <div className="col">
             <div className="float-right">
               <i className="far fa-arrow-alt-circle-right"></i>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="row mt-3">{topRatedList}</div>
 
         <hr className="mt-5" style={{ borderTop: "1px solid #5a606b" }}></hr>

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card } from "react-bootstrap";
 import {Link} from "react-router-dom";
 import "./homekecil.css"
-import ReactStars from "react-rating-stars-component";
+// import ReactStars from "react-rating-stars-component";
 const Homekecil = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
@@ -35,28 +34,25 @@ const Homekecil = () => {
   // })
     return (
      
-      <div className="col" >
-        <div className="card">
-          <Link to={`/movie/${movies[ind].id}`}>
-            <img className="img-fluid" src={movies[ind].poster}></img>
-          </Link>
-        </div>
-        <div className="mt-3">
-          <p style={{ fontWeight: "bolder" }}>{movies[ind].title}</p>
-          <p>Rated: {movies[ind].rating}</p>
-          <ReactStars
-            count={movies[ind].rating}
-            size={20}
-            color1={"#f4c10f"}
-          ></ReactStars>
-        </div>
-     <br></br>
-    
-        {/* <img src="https://m.media-amazon.com/images/M/MV5BZmU4NzVkZjEtZmQxMi00ZDY5LWI3ZDYtMWRmZjE5YmYwZjQzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"></img> */}
+      <div className="col">
+      <div className="card">
+        <Link to={`/movie/${movies[ind].id}`}>
+          <img className="img-fluid" src={movies[ind].poster}></img>
+        </Link>
       </div>
-    );
-  });
-
+      <div className="mt-3">
+        <p style={{ fontWeight: "bolder" }}>{movies[ind].title}</p>
+        {/* <p>Rated: {movies[ind].rating}</p> */}
+        {/* <ReactStars
+          count={movies[ind].rating}
+          size={20}
+          color1={"#f4c10f"}
+        ></ReactStars> */}
+        <br></br>
+      </div>
+    </div>
+       );
+      });
   return (
    
      

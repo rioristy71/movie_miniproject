@@ -1,14 +1,12 @@
-.EditCard.row{
+/* .EditCard.row{
 
-        /* display: flex;
+        display: flex;
         flex-wrap: wrap;
-        flex-direction:column column; */
+        flex-direction:column column;
    
 
-}
-p {
-        text-align: center;
-}
-h3 {
+} */
+
+p{
         text-align: center;
 }
