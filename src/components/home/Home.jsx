@@ -30,13 +30,33 @@ export function Home() {
 
   const pageNext =()=>
   {
-
-      const pagenext = pagination+1;
+    if(pagination < 3) {
+    const pagenext = pagination+1;
     setPagination(pagenext)
-    console.log(pagination)
+    }else {
+      setPagination(1)
 
 
+    }
+      
+    console.log(pagination);
+    console.log(totalPages);
   }
+
+  const pagePrev =()=>
+  {
+    if(pagination > 1) {
+      const pagenext = pagination-1;
+      setPagination(pagenext)
+      }else {
+        setPagination(3)
+  
+  
+      }
+
+    console.log(pagination)
+  }
+
 
 
 
@@ -200,7 +220,7 @@ export function Home() {
 
             <button onClick={pageNext}>next</button>
             
-            <button>pref</button>
+            <button onClick={pagePrev}>pref</button>
 
 
             <CardColumns>

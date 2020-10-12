@@ -13,21 +13,7 @@ const Homekecil = ({pagination}) => {
 
   const movieSearchUrl =
     "https://gentle-garden-05760.herokuapp.com/movies/search"; //post
-  const movieListUrl = `https://gentle-garden-05760.herokuapp.com/movies/3`; //get
-
-
-  const movie1 = async () => {
-    const fetch = await axios.get(movieListUrl, {
-      params: {
-        api_key: "tesssss",
-        language: "en_US",
-        page: 1,
-      },
-    });
-
-    return fetch;
-  };
-
+    const movieListUrl = `https://gentle-garden-05760.herokuapp.com/movies/${pagination}`; //get
   const search = async (param) => {
     const fetch = await axios.post(
       movieSearchUrl,
@@ -42,7 +28,29 @@ const Homekecil = ({pagination}) => {
     return fetch;
   };
 
+  // useEffect(() => {
+
+    
+
+
+
+  // }, [pagination]);
+
+
   useEffect(() => {
+    const movieListUrl = `https://gentle-garden-05760.herokuapp.com/movies/${pagination}`; //get
+    const movie1 = async () => {
+      const fetch = await axios.get(movieListUrl, {
+        params: {
+          api_key: "tesssss",
+          language: "en_US",
+          page: 1,
+        },
+      });
+  
+      return fetch;
+    };
+  
     const query = qs.parse(location.search);
     console.log("query", query);
     const getMovies = async () => {
@@ -57,7 +65,7 @@ const Homekecil = ({pagination}) => {
       setMovies(result.data); //result tak bisa dibaca diluar, makanya taro di state
     };
     getMovies();
-  }, [location.search]);
+  }, [location.search, pagination]);
 
   //bawah ini buat card
   const movieRender = movies.slice(0.9).map((movie, ind) => {
