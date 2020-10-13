@@ -1,0 +1,13 @@
+.form-group {
+padding: 30px;
+    box-shadow: 5px 5px 5px #0002, -3px -3px 3px #fff7;
+    animation: Opacity 0.2s linear;
+    border-radius: 10px;
+}
+
+textarea.form-control {
+
+    background-color: #0002;
+}
+
+

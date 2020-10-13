@@ -16,7 +16,7 @@ import Footer from "../general/Footer";
 import Homekecil from "./Homekecil";
 import { CardColumns } from "react-bootstrap";
 import Bygenre from "./Bygenre";
-
+import "./home.css";
 export function Home() {
   const history = useHistory();
   const [nowPlaying, setNowPlaying] = useState([]);
@@ -97,11 +97,11 @@ export function Home() {
     });
   };
 
-  const handleNextPage = () => {
-    // ganti ke dinamic masih static
+  // const handleNextPage = () => {
+  //   // ganti ke dinamic masih static
 
-    setPage(page + 1);
-  };
+  //   setPage(page + 1);
+  // };
 
   const movies = nowPlaying.slice(0, 4).map((item, index) => {
     return (
@@ -160,7 +160,7 @@ export function Home() {
   const topRatedList = topRated.slice(0, 4).map((item, index) => {
     return (
       <div className="col">
-        <div className="card">
+        <div className="card card-top">
           <Link to={`/movie/${item.id}`}>
             <img className="img-fluid" src={item.poster}></img>
           </Link>
@@ -182,9 +182,9 @@ export function Home() {
   return (
     <div>
       <NavbarAtas />
-      <div className="container">
-        <div className="row mt-2 border">
-        <div className="col " style={{ color: "#5a606b" }}>
+      <div className="container ">
+        <div className="row mt-2 border Menuatas">
+        <div className="col borderkelip " style={{ color: "#5a606b" }}>
        <Bygenre/>
        {/* bisa di isi lagi  */}
         </div>
@@ -217,14 +217,15 @@ export function Home() {
             </p>
             <br></br>
 
-
-            <button onClick={pageNext}>next</button>
+            <div className="btn-pagenation">
+            <button className=" btn btn-lg btn-outline-warning " onClick={pagePrev}>pref</button>
+            <button className=" btn btn-lg  btn-outline-warning"onClick={pageNext}>next</button>
             
-            <button onClick={pagePrev}>pref</button>
+            
+            </div>
 
-
-            <CardColumns>
-              <Homekecil pagination={pagination} />
+            <CardColumns >
+              <Homekecil  pagination={pagination} />
             </CardColumns>
           </div>
         </div>

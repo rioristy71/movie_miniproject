@@ -25,8 +25,7 @@ export default function NavbarAtas() {
           <Navbar.Brand className="logo" to={"/"}>
             C ! N E M A T ! C
           </Navbar.Brand>
-          <Nav className=" mr-auto "></Nav>
-
+     
           <Form className="search-tengah" onSubmit={submit} >
             <FormControl
               type="text"
@@ -36,7 +35,7 @@ export default function NavbarAtas() {
             />
           </Form>
           <Form inline>
-            <Nav.Link href="#link">
+            <Nav.Link >
               <LoginBtn />
             </Nav.Link>
           </Form>

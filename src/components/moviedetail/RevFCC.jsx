@@ -3,7 +3,7 @@ import { Tabs, Tab, Form, Button, FormControl, Card } from "react-bootstrap";
 import { render } from "react-dom";
 import ReactStars from "react-rating-stars-component";
 import {useParams } from "react-router-dom";
-
+import "./rfc.css";
 export default function RevFCC(match) {
   // console.log(useParams().id)
   let params =useParams().id;
@@ -98,7 +98,7 @@ export default function RevFCC(match) {
     return (
       <Card.Body>
         <Form.Group controlId="formBasicTextarea">
-    <Form.Label>{item.User["name"]}</Form.Label>
+    <Form.Label variant="warning">{item.User["name"]}</Form.Label>
           <Form> {item.comment}</Form>
           <Form.Text className="text-muted">
             <ReactStars {...punyaku} />

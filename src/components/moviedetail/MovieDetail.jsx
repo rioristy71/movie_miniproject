@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import Footer from "../general/Footer";
 import NavbarAtas from "../general/NavbarAtas";
 import RevFCC from "./RevFCC";
-
+import "./moviedetail.css";
 
 export function MovieDetail({ match }) {
   let params = match.params;
@@ -152,9 +152,9 @@ export function MovieDetail({ match }) {
   return (
     <>
     <NavbarAtas/>
-    <div className="container">
+    <div className="container ">
     
-      <div className="row mt-2">
+      <div className="row mt-2 ">
         
         <MoviePalyerModal
           show={isOpen}
@@ -162,7 +162,7 @@ export function MovieDetail({ match }) {
             setIsOpen(false);
           }}
         ></MoviePalyerModal>
-        <div className="col text-center" style={{ width: "100%" }}>
+        <div className="col text-center card-atas" style={{ width: "100%" }}>
           <img
             className="img-fluid"
             src={`${detail.poster}`}
@@ -183,22 +183,23 @@ export function MovieDetail({ match }) {
           </div>
         </div>
       </div>
-
-      <div className="row mt-3">
-        <div className="col">
+      <br/><br/>
+      <div className="warper card-atas">
+      <div className="row mt-3 ">
+        <div className="col  ">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>GENRE</p>
         </div>
       </div>
 
-      <div className="row mt-3">
+      <div className="row mt-3 ">
         <div className="col">
           <ul className="list-inline">{project()}</ul>
         </div>
       </div>
 
-      <div className="row mt-3">
-        <div className="col">
-          <div className="mt-3">
+      <div className="row mt-3 ">
+        <div className="col ">
+          <div className=" mt-3">
             <p style={{ color: "#5a606b", fontWeight: "bolder" }}>OVERVIEW</p>
             {detail.synopsis}
           </div>
@@ -209,23 +210,26 @@ export function MovieDetail({ match }) {
       
 
       <div className="row mt-3">
-        <div className="col-md-3">
+        <div className="col-md-3 ">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>RELEASE DATE</p>
           <p style={{ color: "#f4c10f" }}>{detail.releaseDate}</p>
         </div>
-        <div className="col-md-3">
+        <div className="col-md-3 ">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>LANGUAGE</p>
           <p style={{ color: "#f4c10f" }}>{detail.language}</p>
         </div>
-        <div className="col-md-3">
+        <div className="col-md-3 ">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>FOR</p>
           <p style={{ color: "#f4c10f" }}>{Rated()}</p>
         </div>
-        <div className="col-md-3">
+        <div className="col-md-3 ">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>VOTE COUNT</p>
           <p style={{ color: "#f4c10f" }}>{detail.voteCount}</p>
         </div>
       </div>
+      </div><br/>
+      <br/>
+      <br/>
       <div> 
         <RevFCC/>
        

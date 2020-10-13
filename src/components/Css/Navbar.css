@@ -7,11 +7,22 @@ margin: 10px;
     background-color: black;
 }
 
+
+#basic-navbar-nav{
+    justify-content: space-between;
+    color: #000;
+}
+
+.navbar-dark .navbar-brand{
+    padding: 30px;
+
+}
 .search-tengah{
     display: flex;
     justify-content: center;
-    margin:0 20vw;
-    min-width: 40vw;
+   min-width: 30vw;
+   border-radius: 5px;
+   box-shadow: inset 5px 5px 5px #0002,  -2px -2px 2px #fff7;
     
 }
 
@@ -35,6 +46,7 @@ background-color:transparent;
     .navbar-dark .navbar-brand {
 
         display: none;
+      
     }
 
     input.form-control{

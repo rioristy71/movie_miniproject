@@ -361,22 +361,26 @@ const EditProfil =()=>{
     return (
       <div className="col col-sm-12">
         {ambildata()}
-        <div className="col">
+        <div className="col btn-kanan">
           {["left"].map((direction) => (
             <DropdownButton
-              className="btn-kebawah"
+              className="btn-kebawah "
               as={ButtonGroup}
               key={direction}
               id={`dropdown-button-drop-${direction}`}
               drop={direction}
-              variant="outline-light"
+              variant=" text-white"
               title={"hay : " + localStorage.getItem('nm_user')}
             >
               <Col xs={6} md={4}>
-                <Image style={{ maxHeight: '60px' }} src={localStorage.getItem('img_user')} roundedCircle />
+                <Image style={{ maxHeight: '80px' ,maxWidth: '80px' }} src={localStorage.getItem('img_user')} roundedCircle />
               </Col>
-              <Dropdown.Item eventKey="1">Home</Dropdown.Item>
-
+              
+             
+              <Dropdown.Item eventKey="">
+              <Link to={"/"}>  home   </Link>
+              </Dropdown.Item>
+            
               <Button variant="" onClick={handleShow3}>
                 Edir Profil
               </Button>

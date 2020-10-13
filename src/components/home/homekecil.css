@@ -10,3 +10,27 @@
 p{
         text-align: center;
 }
+
+.br-3{
+
+        border: 3px;
+}
+
+.borderkelip{
+   
+        margin-left: 15px;
+        cursor: pointer;
+        border:  linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
+        animation: rotate 4.5s linear infinite;
+        }
+        
+       
+    
+        @keyframes rotate {
+            0%{
+              filter: hue-rotate(0deg);
+            }
+            100%{
+              filter: hue-rotate(360deg);
+            }
+          }

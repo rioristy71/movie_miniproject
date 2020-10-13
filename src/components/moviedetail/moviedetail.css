@@ -1,0 +1,14 @@
+.card {
+    color: #111;
+    width: 80%;
+    box-shadow: 5px 5px 5px #0002, -2px -2px 2px #fff7;
+    animation: Opacity 0.2s linear;
+   
+}
+
+.card-atas {
+padding: 20px;
+    box-shadow: 5px 5px 5px #0002, -3px -3px 3px #fff7;
+    animation: Opacity 0.2s linear;
+    border-radius: 10px;
+}

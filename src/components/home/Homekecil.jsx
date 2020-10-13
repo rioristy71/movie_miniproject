@@ -80,13 +80,13 @@ const Homekecil = ({pagination}) => {
     // })
     return (
       <>
-      <div className="col">
-        <div className="card">
+      <div className="col ">
+        <div className="card ">
           <Link to={`/movie/${movies[ind].id}`}>
-            <img className="img-fluid" src={movies[ind].poster}></img>
+            <img className="img-fluid " src={movies[ind].poster}></img>
           </Link>
         </div>
-        <div className="mt-3">
+        <div className="mt-3 ">
           <p style={{ fontWeight: "bolder" }}>{movies[ind].title}</p>
           {/* <p>Rated: {movies[ind].rating}</p> */}
           {/* <ReactStars
