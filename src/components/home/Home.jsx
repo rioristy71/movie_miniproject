@@ -218,8 +218,8 @@ export function Home() {
             <br></br>
 
             <div className="btn-pagenation">
-            <button className=" btn btn-lg btn-outline-warning " onClick={pagePrev}>pref</button>
-            <button className=" btn btn-lg  btn-outline-warning"onClick={pageNext}>next</button>
+            <button className=" btn btn-lg btn-outline-dark " onClick={pagePrev}>pref</button>
+            <button className=" btn btn-lg  btn-outline-dark"onClick={pageNext}>next</button>
             
             
             </div>

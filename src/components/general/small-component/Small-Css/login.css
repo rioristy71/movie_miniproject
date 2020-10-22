@@ -9,19 +9,31 @@ div.modal-content{
 
 .modal-header , span {
 
-    background-color: rgb(21, 28, 38);
-    color:#fff;
+    background-color: #e5e5e5;
+    color:#111f;
+    height: 100%;
 }
 
+.form-control{
+
+    box-shadow: inset 5px 5px 5px #0002,  -2px -2px 2px #fff7;
+}
+
+.custom .custom-file{
+
+    box-shadow: inset 5px 5px 5px #0002,  -2px -2px 2px #fff7;
+}
 
 .modal-body {
 
-    background-color: rgb(21, 28, 38);
-    color:#fff;
+    background-color: #e5e5e5;
+    color:#111;
+    box-shadow: inset 5px 5px 5px #0002,  -2px -2px 2px #fff7;
+    
 }
 
-.modal-footer {background-color: rgb(21, 28, 38);
-    color:#fff;}
+.modal-footer {background-color: #e5e5e5;
+    color:#111;}
 
     .btn-kebawah{
         
@@ -34,6 +46,6 @@ div.modal-content{
             box-shadow: 5px 5px 5px #0002, -5px -5px 5px #fff7;
             animation: Opacity 0.2s linear;
             border-radius: 10px;
-            
+            padding-left: 20px;
 
         }

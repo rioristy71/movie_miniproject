@@ -27,7 +27,7 @@ body {
   color: rgb(244, 193, 15);
 }
 
-
+/* 
 .card-columns .card{
 
   
@@ -37,7 +37,7 @@ body {
     animation: Opacity 0.2s linear;
     border-radius: 10px;
     
-}
+} */
 
 .card-columns .card:hover{
   

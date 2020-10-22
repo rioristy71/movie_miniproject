@@ -1,4 +1,0 @@
-  <div className="col " style={{ color: "#5a606b" }}>
-       <Bygenre/>
-       {/* bisa di isi lagi  */}
-        </div>

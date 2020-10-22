@@ -150,7 +150,7 @@ export default function RevFCC(match) {
   return (
     <div>
       <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">
-        <Tab eventKey="home" onClick={perubahan()} title="Comente">
+        <Tab eventKey="home" onClick={perubahan()} title="Coment">
           {tesmaping}
         </Tab>
         <Tab eventKey="profile" title="Riview">

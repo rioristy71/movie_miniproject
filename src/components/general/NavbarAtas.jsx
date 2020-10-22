@@ -19,7 +19,7 @@ export default function NavbarAtas() {
 
   return (
     <div>
-      <Navbar bg="transparant" variant="dark" expand="md">
+      <Navbar bg="transparant" variant="light" expand="md">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Navbar.Brand className="logo" to={"/"}>
@@ -35,7 +35,7 @@ export default function NavbarAtas() {
             />
           </Form>
           <Form inline>
-            <Nav.Link >
+            <Nav.Link href="#link">
               <LoginBtn />
             </Nav.Link>
           </Form>

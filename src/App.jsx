@@ -5,14 +5,12 @@ import { Home } from "./components/home/Home";
 import { MovieDetail } from "./components/moviedetail/MovieDetail";
 import LoginBtn from "./components/general/small-component/LoginBtn";
 
-import login from "./components/general/small-component/login";
-
 export function App() {
   return (
     <main>
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/login" component={login} exact />
+        <Route path="/login" component={LoginBtn} exact />
         <Route path="/movie/:id" component={MovieDetail} />
       </Switch>
     </main>

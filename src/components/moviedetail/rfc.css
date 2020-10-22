@@ -4,7 +4,10 @@ padding: 30px;
     animation: Opacity 0.2s linear;
     border-radius: 10px;
 }
+.modal-header, span {
 
+    color: none;
+}
 textarea.form-control {
 
     background-color: #0002;

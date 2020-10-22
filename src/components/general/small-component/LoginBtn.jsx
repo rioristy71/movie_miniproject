@@ -195,13 +195,13 @@ const EditProfil =()=>{
       <div>
         <>
           <ButtonGroup aria-label="Basic example">
-            <Button variant="outline-light">
-              <Link to={"/"}>Home</Link>
+            <Button variant="outline-dark " >
+              <Link variant="text-dark"  to={"/"}>Home</Link>
             </Button>
-            <Button variant="outline-light" onClick={handleShow}>
+            <Button variant="outline-dark" onClick={handleShow}>
               Login
             </Button>
-            <Button variant="outline-light" onClick={handleShow2}>
+            <Button variant="outline-dark" onClick={handleShow2}>
               Sign Up
             </Button>
           </ButtonGroup>
@@ -285,12 +285,13 @@ const EditProfil =()=>{
                   </Form.Text>
                 </Form.Group>
                 <Form.Group>
-                  <input
+                  <input 
                     type="file"
                     name="file"
                     placeholder="Upload an image"
                     onChange={uploadImage}
                   />
+                  
                 </Form.Group>
                 
                     <Form.Group controlId="formBasicPassword">
@@ -359,7 +360,7 @@ const EditProfil =()=>{
     );
   } else {
     return (
-      <div className="col col-sm-12">
+      <div className="col  col-sm-12">
         {ambildata()}
         <div className="col btn-kanan">
           {["left"].map((direction) => (
@@ -369,14 +370,12 @@ const EditProfil =()=>{
               key={direction}
               id={`dropdown-button-drop-${direction}`}
               drop={direction}
-              variant=" text-white"
+              variant=" text-dark"
               title={"hay : " + localStorage.getItem('nm_user')}
             >
               <Col xs={6} md={4}>
                 <Image style={{ maxHeight: '80px' ,maxWidth: '80px' }} src={localStorage.getItem('img_user')} roundedCircle />
               </Col>
-              
-             
               <Dropdown.Item eventKey="">
               <Link to={"/"}>  home   </Link>
               </Dropdown.Item>
@@ -407,8 +406,17 @@ const EditProfil =()=>{
                 <Form.Label>Fullname</Form.Label>
                 <Form.Control nama="name" type="text" onChange={perubahan3} placeholder={ localStorage.getItem('nm_user')} />
               </Form.Group>
-
-              <Form.Group controlId="formBasicEmail">
+              <Form.Group>
+                    <Form.File 
+                          onChange={perubahan2}
+                          nama="image"
+                          id="custom-file-translate-scss"
+                          label="Custom file input"
+                          lang="en"
+                          custom
+                        />
+                    </Form.Group>
+              <Form.Group >
               <input
                     type="file"
                     name="file"

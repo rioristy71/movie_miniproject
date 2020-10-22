@@ -4,16 +4,26 @@ margin: 10px;
 }
 
 .logo{
-    background-color: black;
+    background-color: #e5e5e5;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.133), -3px -3px 3px #fff7;
+ 
 }
 
+.logo .navbar-brand{
+    color: black;
+    color: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
+    animation: rotate 4.5s linear infinite;
 
+}
 #basic-navbar-nav{
     justify-content: space-between;
-    color: #000;
+  
 }
 
-.navbar-dark .navbar-brand{
+
+
+.navbar-light .navbar-brand{
     padding: 30px;
 
 }
@@ -53,4 +63,15 @@ background-color:transparent;
         background-color:transparent;
         display: none;
         }
+  }
+
+
+
+  @keyframes rotate {
+    0%{
+      filter: hue-rotate(0deg);
+    }
+    100%{
+      filter: hue-rotate(360deg);
+    }
   }

@@ -80,24 +80,7 @@ export function MovieDetail({ match }) {
     });
   }
 
-  // const castList = casts.slice(0, 6).map((c, i) => {
-  //   return (
-  //     <div className="col-md-2 text-center" key={i}>
-  //       <img
-  //         className="img-fluid rounded mx-auto d-block"
-  //         src={c.img}
-  //         alt={c.name}
-  //       ></img>
-  //       <p className="font-weight-bold text-center">{c.name}</p>
-  //       <p
-  //         className="font-weight-light text-center"
-  //         style={{ color: "#5a606b" }}
-  //       >
-  //         {c.character}
-  //       </p>
-  //     </div>
-  //   );
-  // });
+
 
   const similarMovieList = similarMovie.slice(0, 4).map((item, index) => {
     return (
@@ -114,7 +97,7 @@ export function MovieDetail({ match }) {
           <ReactStars
             count={item.rating}
             size={20}
-            color1={"#f4c10f"}
+            color1={"#111"}
           ></ReactStars>
         </div>
       </div>
@@ -212,19 +195,19 @@ export function MovieDetail({ match }) {
       <div className="row mt-3">
         <div className="col-md-3 ">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>RELEASE DATE</p>
-          <p style={{ color: "#f4c10f" }}>{detail.releaseDate}</p>
+          <p style={{ color: "#5a606b" }}>{detail.releaseDate}</p>
         </div>
         <div className="col-md-3 ">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>LANGUAGE</p>
-          <p style={{ color: "#f4c10f" }}>{detail.language}</p>
+          <p style={{ color: "#5a606b" }}>{detail.language}</p>
         </div>
         <div className="col-md-3 ">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>FOR</p>
-          <p style={{ color: "#f4c10f" }}>{Rated()}</p>
+          <p style={{ color: "#5a606b" }}>{Rated()}</p>
         </div>
         <div className="col-md-3 ">
           <p style={{ color: "#5a606b", fontWeight: "bolder" }}>VOTE COUNT</p>
-          <p style={{ color: "#f4c10f" }}>{detail.voteCount}</p>
+          <p style={{ color: "#5a606b" }}>{detail.voteCount}</p>
         </div>
       </div>
       </div><br/>
